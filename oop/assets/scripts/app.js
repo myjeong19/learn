@@ -1,18 +1,16 @@
 // 사진 판매 사이트
 
-//   Todo 1. 사진 클래스
+//* Photo 객체를 만드는 클래스
 class Photo {
-  //? 클래스 필드
-
   constructor(title, imageURL, price, description) {
     this.title = title;
-    //? 클래스 속성
     this.imageURL = imageURL;
     this.price = price;
     this.description = description;
   }
 }
 
+//* ElementAttribute 태그에 속성 부여, 클래스
 class ElementAttribute {
   constructor(attributeName, attributeValue) {
     this.name = attributeName;
@@ -21,40 +19,49 @@ class ElementAttribute {
 }
 
 class Component {
-  constructor(renderHookId) {
-    // ! 추가할 위치
+  constructor(renderHookId, shouldRender = true) {
     this.hookId = renderHookId;
+    if (shouldRender) {
+      this.render();
+    }
   }
+
+  //* 명시적 render
+  render() {}
 
   createRootElement(tag, cssClass, attributes) {
     const rootElement = document.createElement(tag);
     if (cssClass) {
-      // ! cssClass가 true인 경우, cssClass 할당
+      //* cssClass가 true인 경우, cssClass 할당
       rootElement.className = cssClass;
     }
     if (attributes && attributes.length > 0) {
-      // ! attributes가 true이고, 길이가 0 보다 큰 경우
+      //* attributes가 true이고, 길이가 0 보다 큰 경우
       for (const attribute of attributes) {
+        //* attributes의 길이만큼 반복하며, setAttribute으로 속성 할당
         rootElement.setAttribute(attribute.name, attribute.value);
       }
     }
+    //* this.hookId는 renderHookId
     document.getElementById(this.hookId).append(rootElement);
     return rootElement;
   }
 }
 
-// Todo 2-1 상속
+//* Component를 상속 받은 ShoppingCart
 class ShoppingCart extends Component {
   cartItem = [];
 
+  //* 장바구니 총액 DOM 업데이트
   set cartItems(updateCartItem) {
     this.cartItem = updateCartItem;
+    //* updateCartItem 카트 상품 목록 업데이트한 배열 값
     this.totalOutput.innerHTML = `<h2>Total: ${this.totalAmount.toLocaleString(
       'ko-KR'
     )}원</h2>`;
   }
 
-  //   Todo 출력 업데이트 1-1
+  //* 장바구니 총액
   get totalAmount() {
     const sum = this.cartItem.reduce(
       (prevValue, currentItem) => prevValue + currentItem.price,
@@ -62,10 +69,18 @@ class ShoppingCart extends Component {
     );
     return sum;
   }
-  constructor() {
-    super();
+
+  constructor(renderHookId) {
+    //* 부모 생성자 호출
+    super(renderHookId, false);
+    this.orderPhoto = () => {
+      console.log('Ordering...');
+      console.log(this.cartItem);
+    };
+    this.render();
   }
 
+  //* 카트에 상품추가
   handleAddPhoto(photo) {
     const updatedCartItems = [...this.cartItem];
     updatedCartItems.push(photo);
@@ -73,20 +88,23 @@ class ShoppingCart extends Component {
   }
 
   render() {
+    //* 부모 Component의 createRootElement
     const elementCart = this.createRootElement('section', 'cart');
     elementCart.innerHTML = `
-<h2>Total: ${0}원</h2>
-<button>주문하기</button>
-`;
+    <h2>Total: ${0}원</h2>
+    <button>주문하기</button>
+    `;
+    const orderButton = elementCart.querySelector('button');
+    orderButton.addEventListener('click', this.orderPhoto);
     this.totalOutput = elementCart.querySelector('h2');
-    return elementCart;
   }
 }
 
-// Todo 3. 단일 아이템의 렌더링 담당
-class PhotoItem {
-  constructor(photo) {
+class PhotoItem extends Component {
+  constructor(photo, renderHookId) {
+    super(renderHookId, false);
     this.photo = photo;
+    this.render();
   }
 
   handleAddToCart() {
@@ -94,72 +112,77 @@ class PhotoItem {
   }
 
   render() {
-    const elementPhotoItem = document.createElement('li');
-    elementPhotoItem.className = 'photo-item';
+    const elementPhotoItem = this.createRootElement('li', 'photo-item');
     elementPhotoItem.innerHTML = `
-<div>
-    <img src='${this.photo.imageURL}' alt='${this.photo.title}'>
     <div>
-        <h2>${this.photo.title}</h2>
-        <h3>${this.photo.price.toLocaleString('ko-KR')}원</h3>
-        <p>${this.photo.description}</p>
-        <button>카트 담기</button>
+      <img src='${this.photo.imageURL}' alt='${this.photo.title}'>
+      <div>
+          <h2>${this.photo.title}</h2>
+          <h3>${this.photo.price.toLocaleString('ko-KR')}원</h3>
+          <p>${this.photo.description}</p>
+          <button>카트 담기</button>
+      </div>
     </div>
-</div>
-`;
+    `;
 
     const buttonAddCart = elementPhotoItem.querySelector('button');
     buttonAddCart.addEventListener('click', this.handleAddToCart.bind(this));
-    //? this를 bind해, handleAddToCart의 this가 class의 this를 가르키게함
-    return elementPhotoItem;
+    //* this를 bind해, handleAddToCart의 this가 class의 this를 가르키게함
   }
 }
 
-// Todo 2. 사진들 사진 렌더 메서드 클래스
-class PhotoList {
-  photos = [
-    new Photo(
-      'Photo 1',
-      'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      20000,
-      'This is Photo 1'
-    ),
+class PhotoList extends Component {
+  photos = [];
 
-    new Photo(
-      'Photo 2',
-      'https://images.unsplash.com/photo-1697462247864-338e7eba8c4c?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      15000,
-      'This is Photo 2'
-    ),
-  ];
+  constructor(renderHookId) {
+    super(renderHookId);
+    this.fetchPhotos();
+  }
 
-  //?   클래스 메서드
-  render() {
-    const elementPhotoList = document.createElement('ul');
-    elementPhotoList.className = 'photo-list';
+  fetchPhotos() {
+    this.photos = [
+      new Photo(
+        'Photo 1',
+        'https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        20000,
+        'This is Photo 1'
+      ),
+
+      new Photo(
+        'Photo 2',
+        'https://images.unsplash.com/photo-1697462247864-338e7eba8c4c?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        15000,
+        'This is Photo 2'
+      ),
+    ];
+    this.renderPhotos();
+  }
+
+  renderPhotos() {
     for (const photo of this.photos) {
-      const craetePhotoItem = new PhotoItem(photo);
-      const elementPhotoItem = craetePhotoItem.render();
-      elementPhotoList.append(elementPhotoItem);
+      new PhotoItem(photo, 'photo-list');
     }
+  }
 
-    return elementPhotoList;
+  render() {
+    this.createRootElement('ul', 'photo-list', [
+      new ElementAttribute('id', 'photo-list'),
+    ]);
+    if (this.photos && this.photos.length > 0) {
+      this.renderPhotos();
+    }
   }
 }
 
 class Shop {
+  constructor() {
+    this.render();
+  }
+
   render() {
-    const renderHook = document.getElementById('app');
-
-    //? 1-1 this.createCart는 Shop의 createCart를 의미함.
-    this.createCart = new ShoppingCart();
-    const elementCart = this.createCart.render();
-
-    const craetePhotoShop = new PhotoList();
-    const elementPhotoShop = craetePhotoShop.render();
-
-    renderHook.append(elementCart);
-    renderHook.append(elementPhotoShop);
+    //* 1-1 this.createCart는 Shop의 createCart를 의미함.
+    this.createCart = new ShoppingCart('app');
+    new PhotoList('app');
   }
 }
 
@@ -168,8 +191,6 @@ class App {
 
   static init() {
     const shop = new Shop();
-    shop.render();
-    //? 1-2 renderApp의 cart는 shop.cart임
     this.createCart = shop.createCart;
   }
 
