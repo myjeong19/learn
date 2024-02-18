@@ -9,11 +9,7 @@ import {
   deriveGameBoard,
   deriveWinner,
 } from './deriveFunctions';
-
-const PLAYERS = {
-  X: 'Player 1',
-  O: 'player 2',
-};
+import { PLAYERS } from './players';
 
 function App() {
   const [players, setPlayers] = useState(PLAYERS);
