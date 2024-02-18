@@ -1,3 +1,5 @@
+import classes from './css/GameBoard.module.css';
+
 export const GameBoard = ({ onSelectSquare, board }) => {
   const elementGameBoard = board.map((row, rowIndex) => (
     <li key={rowIndex}>
@@ -16,5 +18,5 @@ export const GameBoard = ({ onSelectSquare, board }) => {
     </li>
   ));
 
-  return <ol id='game-board'>{elementGameBoard}</ol>;
+  return <ol className={classes['game-board']}>{elementGameBoard}</ol>;
 };

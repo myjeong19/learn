@@ -1,3 +1,5 @@
+import classes from './css/Log.module.css';
+
 export const Log = ({ turns }) => {
   const elementLog = turns.map(turn => (
     <li key={`${turn.square.row}${turn.square.column}`}>
@@ -5,5 +7,5 @@ export const Log = ({ turns }) => {
     </li>
   ));
 
-  return <ol id='log'>{elementLog}</ol>;
+  return <ol className={classes.log}>{elementLog}</ol>;
 };

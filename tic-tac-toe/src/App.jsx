@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import classes from './css/App.module.css';
 
 import { Player } from './components/Player';
 import { GameBoard } from './components/GameBoard';
@@ -44,9 +45,9 @@ function App() {
   };
 
   return (
-    <main>
-      <div id='game-container'>
-        <ol id='players' className='highlight-player'>
+    <main className={classes.main}>
+      <div className={classes['game-container']}>
+        <ol className={`${classes.players} ${classes['highlight-player']}`}>
           <Player
             initalName={PLAYERS.X}
             symbol='X'

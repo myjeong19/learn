@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import classes from './css/Player.module.css';
 
 export const Player = ({ initalName, symbol, isActive, onChangeName }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -29,9 +30,9 @@ export const Player = ({ initalName, symbol, isActive, onChangeName }) => {
 
   return (
     <li className={isActive ? 'active' : null}>
-      <span className='player'>
+      <span className={classes.player}>
         {elementplayerName}
-        <span className='player-symbol'>{symbol}</span>
+        <span className={classes['player-symbol']}>{symbol}</span>
       </span>
       <button onClick={handleIsEditing}>{buttonCaption}</button>
     </li>
