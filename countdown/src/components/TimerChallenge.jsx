@@ -1,8 +1,6 @@
 import { useState, useRef } from 'react';
 import { ResultModal } from './ResultModal';
 
-let timer;
-
 export const TimerChallenge = ({ title, targetTime }) => {
   const timer = useRef();
   const dialog = useRef();
