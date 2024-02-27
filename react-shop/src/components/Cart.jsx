@@ -3,13 +3,12 @@ import { CartContext } from '../store/shopping-cart-context';
 
 export default function Cart({ onUpdateItemQuantity }) {
   const { items } = useContext(CartContext);
-
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-  const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
 
+  const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
   const elementCartItem = items.map(item => {
     const formattedPrice = `$${item.price.toFixed(2)}`;
     return (
