@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
+import { useRef, useState, useCallback } from 'react';
 
 import Places from './components/Places.jsx';
 import Modal from './components/Modal.jsx';
@@ -7,33 +7,21 @@ import logoImg from './assets/logo.png';
 import AvailablePlaces from './components/AvailablePlaces.jsx';
 import { fetchUserPlaces, updateUserPlaces } from './http.js';
 import Error from './components/Error.jsx';
+import { useFetch } from './hooks/useFetch.js';
 
 function App() {
   const selectedPlace = useRef();
-
-  const [userPlaces, setUserPlaces] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
-  const [error, setError] = useState();
 
   const [errorUpdatingPlaces, setErrorUpdatingPlaces] = useState();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  useEffect(() => {
-    async function fetchPlaces() {
-      setIsFetching(true);
-      try {
-        const places = await fetchUserPlaces();
-        setUserPlaces(places);
-      } catch (error) {
-        setError({ message: error.message || 'Failed to fetch user places.' });
-      }
-
-      setIsFetching(false);
-    }
-
-    fetchPlaces();
-  }, []);
+  const {
+    isFetching,
+    error,
+    fetchedData: userPlaces,
+    setFetchedData: setUserPlaces,
+  } = useFetch(fetchUserPlaces, []);
 
   function handleStartRemovePlace(place) {
     setModalIsOpen(true);
@@ -45,13 +33,13 @@ function App() {
   }
 
   async function handleSelectPlace(selectedPlace) {
-    // await updateUserPlaces([selectedPlace, ...userPlaces]);
+    await updateUserPlaces([selectedPlace, ...userPlaces]);
 
-    setUserPlaces((prevPickedPlaces) => {
+    setUserPlaces(prevPickedPlaces => {
       if (!prevPickedPlaces) {
         prevPickedPlaces = [];
       }
-      if (prevPickedPlaces.some((place) => place.id === selectedPlace.id)) {
+      if (prevPickedPlaces.some(place => place.id === selectedPlace.id)) {
         return prevPickedPlaces;
       }
       return [selectedPlace, ...prevPickedPlaces];
@@ -69,15 +57,13 @@ function App() {
 
   const handleRemovePlace = useCallback(
     async function handleRemovePlace() {
-      setUserPlaces((prevPickedPlaces) =>
-        prevPickedPlaces.filter(
-          (place) => place.id !== selectedPlace.current.id
-        )
+      setUserPlaces(prevPickedPlaces =>
+        prevPickedPlaces.filter(place => place.id !== selectedPlace.current.id)
       );
 
       try {
         await updateUserPlaces(
-          userPlaces.filter((place) => place.id !== selectedPlace.current.id)
+          userPlaces.filter(place => place.id !== selectedPlace.current.id)
         );
       } catch (error) {
         setUserPlaces(userPlaces);
@@ -88,7 +74,7 @@ function App() {
 
       setModalIsOpen(false);
     },
-    [userPlaces]
+    [userPlaces, setUserPlaces]
   );
 
   function handleError() {
@@ -100,7 +86,7 @@ function App() {
       <Modal open={errorUpdatingPlaces} onClose={handleError}>
         {errorUpdatingPlaces && (
           <Error
-            title="An error occurred!"
+            title='An error occurred!'
             message={errorUpdatingPlaces.message}
             onConfirm={handleError}
           />
@@ -115,7 +101,7 @@ function App() {
       </Modal>
 
       <header>
-        <img src={logoImg} alt="Stylized globe" />
+        <img src={logoImg} alt='Stylized globe' />
         <h1>PlacePicker</h1>
         <p>
           Create your personal collection of places you would like to visit or
@@ -123,13 +109,13 @@ function App() {
         </p>
       </header>
       <main>
-        {error && <Error title="An error occurred!" message={error.message} />}
+        {error && <Error title='An error occurred!' message={error.message} />}
         {!error && (
           <Places
             title="I'd like to visit ..."
-            fallbackText="Select the places you would like to visit below."
+            fallbackText='Select the places you would like to visit below.'
             isLoading={isFetching}
-            loadingText="Fetching your places..."
+            loadingText='Fetching your places...'
             places={userPlaces}
             onSelectPlace={handleStartRemovePlace}
           />
