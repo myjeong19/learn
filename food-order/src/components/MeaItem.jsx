@@ -1,3 +1,5 @@
+import { currencyFormatter } from '../util/formatting';
+
 export const MeaItem = ({ mealsList }) => {
   const elementMealItem = mealsList.map(meal => {
     const { id, name, price, description, image } = meal;
@@ -9,7 +11,7 @@ export const MeaItem = ({ mealsList }) => {
           <img src={`http://localhost:3000/${image}`} alt={name} />
           <div>
             <h3>{name}</h3>
-            <p className='meal-item-price'>{price}</p>
+            <p className='meal-item-price'>{currencyFormatter.format(price)}</p>
             <p className='meal-item-description'>{description}</p>
           </div>
           <p className='meal-item-actions'>
