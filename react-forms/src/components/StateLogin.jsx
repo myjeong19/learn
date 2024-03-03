@@ -1,51 +1,37 @@
 import { useState } from 'react';
 import { isEmail, isNotEmpty, hasMinLength } from '../util/validation';
 import { Input } from './Input';
-
-const initialEnteredValues = {
-  email: '',
-  password: '',
-};
-
-const initialDidEdit = {
-  email: false,
-  password: false,
-};
+import { useInput } from './hooks/useInput';
 
 export default function StateLogin() {
-  const [enteredValues, setEnteredValues] = useState(initialEnteredValues);
-  const [didEdit, setDidEdit] = useState(initialDidEdit);
+  // 262-3. 커스텀 훅 useInuput 사용
+  const {
+    value: emailValue,
+    handleInputChange: handleEmailChange,
+    handleInputBlur: handleEmailBlur,
+    hasError: emailHasError,
+  } = useInput('', value => isEmail(value) && isNotEmpty(value));
+  // 262-6.validationFn으로 넘겨줄 함수 정의
+  //   enteredValue를 value 값으로 넘겨받고, isEmail과 isNotEmpty 함수의 인자로 넘겨줌.
 
-  const emailIsInvalid =
-    didEdit.email &&
-    isEmail(enteredValues.email) &&
-    isNotEmpty(enteredValues.email);
+  // 262-4. isEmail, isNotEmpty, hasMinLength 커스텀 훅에 의탁.
 
-  const passwordIsInvalid =
-    didEdit.password && !hasMinLength(enteredValues.password, 10);
+  const {
+    value: passwordValue,
+    handleInputChange: handlePasswordChange,
+    handleInputBlur: handlePasswordBlur,
+    hasError: passwordHasError,
+  } = useInput('', value => hasMinLength(value, 10));
 
   const handleSubmit = event => {
     event.preventDefault();
 
-    console.log(enteredValues);
-  };
+    if (emailHasError || passwordHasError) {
+      return;
+    }
 
-  const handleValueChange = event => {
-    setEnteredValues({
-      ...enteredValues,
-      [event.target.name]: event.target.value,
-    });
-    setDidEdit(prevEdit => ({
-      ...prevEdit,
-      [event.target.name]: false,
-    }));
+    console.log(emailValue, passwordValue);
   };
-
-  const handleInputBlur = event =>
-    setDidEdit(prevEdit => ({
-      ...prevEdit,
-      [event.target.name]: true,
-    }));
 
   return (
     <form onSubmit={handleSubmit}>
@@ -56,10 +42,10 @@ export default function StateLogin() {
           id='email'
           type='email'
           name='email'
-          onBlur={handleInputBlur}
-          onChange={handleValueChange}
-          error={emailIsInvalid && 'Please enter a valid email address.'}
-          value={enteredValues.email}
+          value={emailValue}
+          error={emailHasError && 'Please enter a valid email address.'}
+          onBlur={handleEmailBlur}
+          onChange={handleEmailChange}
         />
 
         <Input
@@ -67,10 +53,10 @@ export default function StateLogin() {
           id='password'
           type='password'
           name='password'
-          onBlur={handleInputBlur}
-          onChange={handleValueChange}
-          error={passwordIsInvalid && 'Please enter a valid password.'}
-          value={enteredValues.password}
+          value={passwordValue}
+          error={passwordHasError && 'Please enter a valid password.'}
+          onBlur={handlePasswordBlur}
+          onChange={handlePasswordChange}
         />
       </div>
       <p className='form-actions'>
