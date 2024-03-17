@@ -27,7 +27,7 @@ async function get(id) {
     throw new NotFoundError('Could not find any events.');
   }
 
-  const event = storedData.events.find((ev) => ev.id === id);
+  const event = storedData.events.find(ev => ev.id === id);
   if (!event) {
     throw new NotFoundError('Could not find event for id ' + id);
   }
@@ -47,7 +47,7 @@ async function replace(id, data) {
     throw new NotFoundError('Could not find any events.');
   }
 
-  const index = storedData.events.findIndex((ev) => ev.id === id);
+  const index = storedData.events.findIndex(ev => ev.id === id);
   if (index < 0) {
     throw new NotFoundError('Could not find event for id ' + id);
   }
@@ -59,8 +59,8 @@ async function replace(id, data) {
 
 async function remove(id) {
   const storedData = await readData();
-  const updatedData = storedData.events.filter((ev) => ev.id !== id);
-  await writeData({events: updatedData});
+  const updatedData = storedData.events.filter(ev => ev.id !== id);
+  await writeData({ events: updatedData });
 }
 
 exports.getAll = getAll;
