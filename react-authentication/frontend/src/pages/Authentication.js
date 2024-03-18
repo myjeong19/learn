@@ -44,6 +44,11 @@ export async function action({ request }) {
 
   localStorage.setItem('token', token);
   const expiration = new Date();
+  expiration.setHours(expiration.getHours() + 1);
+  // setHours: Date의 내장 객체
+  // expiration.getHours() + 1 한 시간뒤, 미래의 날짜
+
+  localStorage.setItem('expiration', expiration.toISOString());
 
   return redirect('/');
 }
