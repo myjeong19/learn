@@ -22,6 +22,7 @@ export const fetchUSerPlaces = async () => {
   return resData.places;
 };
 
+// ! PUT
 export const updateUserPlaces = async places => {
   const response = await fetch('http://localhost:3000/user-places', {
     method: 'PUT',
