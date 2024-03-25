@@ -129,7 +129,7 @@ const queryClient = new QueryClient({
 
 ```
 
-- queryCache를 추가한 다음 오류 콜백을 추가할 수 있으며, 오류 콜백 onError는 `useQuery`에서 발생하는 오류에 관계 없이 전달되며,  
+- `QueryCache` 추가한 다음 오류 콜백을 추가할 수 있으며, 오류 콜백 onError는 `useQuery`에서 발생하는 오류에 관계 없이 전달되며,  
   콜백 본문 내에서 오류를 처리할 수 있다.
 
   ```jsx
