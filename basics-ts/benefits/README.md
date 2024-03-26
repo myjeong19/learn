@@ -262,3 +262,53 @@ console.log(combinedAges);
     const literalResult = literal("STRING");
     console.log(literalResult); // STRING
     ```
+
+## type alias
+
+- 유니언 타입을 일일이, 명시하지 않고 alias를 사용하면 새로운 타입을 생성할 수 있다.
+
+  ```ts
+  type Combinable = number | string;
+  type STRING = "STRING" | "string";
+
+  function combine(input1: Combinable, input2: Combinable, input3: STRING) {
+    // const result = input1 + input2; // '+' 연산자를 'string | number' 및 'string | number' 형식에 적용할 수 없습니다.ts(2365)
+    let result: number | string;
+    if (typeof input1 === "number" && typeof input2 === "number") {
+      result = input1 + input2;
+    } else {
+      result = input1.toString() + input2.toString();
+    }
+    return result;
+  }
+
+  const combinedAges = combine(30, 26, "STRING");
+  console.log(combinedAges);
+  ```
+
+- 복잡할 수 있는 객체 타입에도 사용할 수 있다.
+
+  - 변경 전
+
+    ```ts
+    function greet(user: { name: string; age: number }) {
+      console.log('Hi, I am ' + user.name);
+    }
+
+    function isOlder(user: { name: string; age: number }, checkAge: number) {
+      return checkAge > user.age;
+    ```
+
+  - 변경 후
+
+    ```ts
+    type User = { name: string; age: number };
+
+    function greet(user: User) {
+      console.log("Hi, I am " + user.name);
+    }
+
+    function isOlder(user: User, checkAge: number) {
+      return checkAge > user.age;
+    }
+    ```
