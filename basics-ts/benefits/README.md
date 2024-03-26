@@ -127,3 +127,23 @@ const product = {
     console.log(hobby.toString());
   }
   ```
+
+## 튜플
+
+- 타입과 배열의 길이가 고정되어있는 것을 튜플이라한다.
+
+  ```ts
+  const person: {
+    name: string;
+    age: number;
+    hobbies: string[];
+    role: [number, string];
+  } = {
+    name: "Jack",
+    age: 32,
+    hobbies: ["Sports", "Cooking"],
+    role: [2, "author"],
+  };
+  ```
+
+  - `push`는 튜플에서 허용되는 일종의 예외로, 타입스크립트는 이 오류를 잡지 못한다.
