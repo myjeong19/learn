@@ -51,7 +51,7 @@
 
     - 특별히 타입을 명시하지 않고, 값을 할당하지 않으면 any타입이 된다.
 
-## 객체 형태
+## Object 형태
 
 - 객체에 관해 아무 정보도 주지 않았기에, 타입스크립트는 속성의 타입을 지원하지 않아 오류가 발생한다.
 
@@ -106,7 +106,7 @@ const product = {
 }
 ```
 
-## 배열 타입
+## Array 타입
 
 - 타입스크립트는 어떤 자바스크립트 배열이라도 지원하며, 유연하거나 제한적으로 지정할 수 있다.
 
@@ -128,7 +128,7 @@ const product = {
   }
   ```
 
-## 튜플
+## Tuple 타입
 
 - 타입과 배열의 길이가 고정되어있는 것을 튜플이라한다.
 
@@ -219,6 +219,28 @@ const product = {
 
 - enum은 사람이 읽을 수 있는 식별자가 필요하고, 내부적으로 매핑된 값이 있을 때 편리하다.
 
-## Any
+## Any 타입
 
 - Any 타입은 타입스크립트에 아무것도 할당하지 않아, 모든 값을 할당할 수 있다.
+
+## Union 타입
+
+- 함수의 매개변수가 두 가지 다른 종류의 값을 받을 수 있을 때, 유니언 타입을 사용할 수 있다.
+
+- 타입스크립트는 유니언 타입 자체만을 보고 분석하지 않고, 그냥 다양한 타입의 값이 들어 올 수 있다고 판단한다.
+
+```ts
+function combine(input1: number | string, input2: number | string) {
+  // const result = input1 + input2; // '+' 연산자를 'string | number' 및 'string | number' 형식에 적용할 수 없습니다.ts(2365)
+  let result: number | string;
+  if (typeof input1 === "number" && typeof input2 === "number") {
+    result = input1 + input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
+}
+
+const combinedAges = combine(30, 26);
+console.log(combinedAges);
+```
