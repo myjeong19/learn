@@ -105,3 +105,25 @@ const product = {
   }
 }
 ```
+
+## 배열 타입
+
+- 타입스크립트는 어떤 자바스크립트 배열이라도 지원하며, 유연하거나 제한적으로 지정할 수 있다.
+
+- 혼합 배열을 지원하기 위해서 any타입을 사용할 수 있다.
+
+  - 하지만 any를 사용하는 경우, 타입스크립트의 장점을 잃어버리게 된다.
+
+  ```ts
+  // 문자열 배열
+  let favoriteActivities: string[];
+  let favoriteActivities2: any[];
+  ```
+
+- hobby가 문자열임을 알기에, 문자열처럼 취급하며 문자열 메소드를 사용할 수 있다.
+
+  ```ts
+  for (const hobby of person.hobbies) {
+    console.log(hobby.toString());
+  }
+  ```
