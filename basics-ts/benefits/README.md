@@ -147,3 +147,74 @@ const product = {
   ```
 
   - `push`는 튜플에서 허용되는 일종의 예외로, 타입스크립트는 이 오류를 잡지 못한다.
+
+## 열거타입 enm
+
+- 애플리케이션에서 사용하는 전역 상수이며, 숫자로 표현하지만 사람이 읽을 때  
+  사람이 읽을 수 있는 라벨을 사용하는 것이 바로 enum이다.
+
+- 문자열을 사용하면, 읽을 수 있는 장점이 있지만, 값을 비교할 때 정확한 문자열을 제공해야한다는 단점이 있다.
+
+- 전역 상수를 사용하는 방법
+
+  - `const ADMIN = 0;` 숫자, 혹은 문자열을 담을 수 있지만 숫자를 사용하는 경우, 코드를 덜 써도 되고, 메모리를 아낄 수 있다.
+    하지만, 이 방식의 단점은 person의 속성 role이 숫자 타입으로 추론된다는 단점이 있다.
+
+    ```ts
+    const ADMIN = 0;
+    const READ_ONLY = 1;
+    const AUTHOR = 2;
+
+    const person = {
+      name: "Jack",
+      age: 32,
+      hobbies: ["Sports", "Cooking"],
+      role: ADMIN,
+    };
+
+    if (person.role === ADMIN) {
+      console.log("is admin"); // is admin
+    }
+
+    if (person.role === 0) {
+      console.log("is admin"); // is admin
+    }
+    ```
+
+- enum은 사용자 정의 타입이다.
+
+  ```ts
+  enum Role {
+    ADMIN,
+    READ_ONLY,
+    AUTHOR,
+  }
+
+  const person = {
+    name: "Jack",
+    age: 32,
+    hobbies: ["Sports", "Cooking"],
+    role: Role.ADMIN,
+  };
+
+  if (person.role === Role.ADMIN) {
+    console.log("is admin");
+  }
+
+  if (person.role === 0) {
+    console.log("is admin");
+  }
+  ```
+
+- enum에 숫자를 할당할 경우, 자동으로 시작 값에서 1씩 더한 값을 할당한다.  
+  또한, 모든 식별자에 임의의 값을 할당할 수도 있으며, 문자열을 할당할 수도 있다.
+
+  ```ts
+  enum Role {
+    ADMIN = 5,
+    READ_ONLY, // 6
+    AUTHOR, // 7
+  }
+  ```
+
+- enum은 사람이 읽을 수 있는 식별자가 필요하고, 내부적으로 매핑된 값이 있을 때 편리하다.
