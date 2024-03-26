@@ -50,3 +50,58 @@
     ```
 
     - 특별히 타입을 명시하지 않고, 값을 할당하지 않으면 any타입이 된다.
+
+## 객체 형태
+
+- 객체에 관해 아무 정보도 주지 않았기에, 타입스크립트는 속성의 타입을 지원하지 않아 오류가 발생한다.
+
+```ts
+const person: object = {
+  name: "Jack",
+  age: 32,
+};
+
+console.log(person.name);
+```
+
+- 더 구체적으로 하기 위해서는 구체적으로 객체 타입을 설정해야한다.
+
+```ts
+const person: {
+  name: string;
+  age: number;
+} = {
+  name: "Jack",
+  age: 32,
+};
+
+console.log(person.name);
+```
+
+이렇게 구체적으로 타입을 설정할 수 있지만, 기본적으로 추론을 하게 두는 것이 좋다.
+
+```js
+const product = {
+  id: "abc1",
+  price: 12.99,
+  tags: ["great-offer", "hot-and-new"],
+  details: {
+    title: "Red Carpet",
+    description: "A great carpet - almost brand-new!",
+  },
+};
+```
+
+이러한 객체 타입은 아래와 같다.
+
+```ts
+{
+  id: string;
+  price: number;
+  tags: string[];
+  details: {
+    title: string;
+    description: string;
+  }
+}
+```
