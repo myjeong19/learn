@@ -244,3 +244,21 @@ function combine(input1: number | string, input2: number | string) {
 const combinedAges = combine(30, 26);
 console.log(combinedAges);
 ```
+
+## literal 타입
+
+- 타입을 정의하는 것이 아닌, 값을 정의하는 것이다.
+
+  - literal을 정의하면, 특정 값만 받을 수 있으며, 대소문자를 구분한다.
+
+    ```ts
+    function literal(resultConversion: "STRING" | "text") {
+      return resultConversion;
+    }
+
+    // const literalResult = literal("TEXT");
+    // console.log(literalResult); // Argument of type '"TEXT"' is not assignable to parameter of type '"STRING"'.
+
+    const literalResult = literal("STRING");
+    console.log(literalResult); // STRING
+    ```
