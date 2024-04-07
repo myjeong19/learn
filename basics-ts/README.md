@@ -312,3 +312,31 @@ console.log(combinedAges);
       return checkAge > user.age;
     }
     ```
+
+## 함수 반환 타입 및 '무효' void
+
+```ts
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+function printResult(num: number): void {
+  console.log("Result: " + num);
+}
+
+printResult(add(5, 12));
+```
+
+- 위 코드의 printResult는 문자열을 반환한다 생각할 수 있지만, 사실 아무것도 반환하지 않는다.  
+  그래서 printResult는 특별한 반환 타입인 void를 갖는다.
+
+- void는 함수에 반환 구문이 없다는 것을 의미한다.
+
+- `console.log(printResult(add(5, 12)));`는 undefined를 반환한다.
+
+  - undefined는 실제로 어떤 값이며, 존재하지 않는 속성이나 객체에 접근할 때 나타나는 값이다.
+  - 이 경우, void가 기술적으로는 undefined를 반환함을 알 수 있다.
+
+  - undefined는 타입스크립트의 타입이다.
+    - 하지만 함수 함수가 아무것도 반환하지 않을 때 void는 쓸 수 있지만, undefined는 쓸 수 없다.
+    - 타입스크립트에서 반환 구문은 있지만, 아무 값도 반환하지 않을 때 사용한다.
