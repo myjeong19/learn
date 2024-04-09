@@ -57,7 +57,7 @@
 
 ```ts
 const person: object = {
-  name: "Jack",
+  name: 'Jack',
   age: 32,
 };
 
@@ -71,7 +71,7 @@ const person: {
   name: string;
   age: number;
 } = {
-  name: "Jack",
+  name: 'Jack',
   age: 32,
 };
 
@@ -82,12 +82,12 @@ console.log(person.name);
 
 ```js
 const product = {
-  id: "abc1",
+  id: 'abc1',
   price: 12.99,
-  tags: ["great-offer", "hot-and-new"],
+  tags: ['great-offer', 'hot-and-new'],
   details: {
-    title: "Red Carpet",
-    description: "A great carpet - almost brand-new!",
+    title: 'Red Carpet',
+    description: 'A great carpet - almost brand-new!',
   },
 };
 ```
@@ -139,10 +139,10 @@ const product = {
     hobbies: string[];
     role: [number, string];
   } = {
-    name: "Jack",
+    name: 'Jack',
     age: 32,
-    hobbies: ["Sports", "Cooking"],
-    role: [2, "author"],
+    hobbies: ['Sports', 'Cooking'],
+    role: [2, 'author'],
   };
   ```
 
@@ -166,18 +166,18 @@ const product = {
     const AUTHOR = 2;
 
     const person = {
-      name: "Jack",
+      name: 'Jack',
       age: 32,
-      hobbies: ["Sports", "Cooking"],
+      hobbies: ['Sports', 'Cooking'],
       role: ADMIN,
     };
 
     if (person.role === ADMIN) {
-      console.log("is admin"); // is admin
+      console.log('is admin'); // is admin
     }
 
     if (person.role === 0) {
-      console.log("is admin"); // is admin
+      console.log('is admin'); // is admin
     }
     ```
 
@@ -191,18 +191,18 @@ const product = {
   }
 
   const person = {
-    name: "Jack",
+    name: 'Jack',
     age: 32,
-    hobbies: ["Sports", "Cooking"],
+    hobbies: ['Sports', 'Cooking'],
     role: Role.ADMIN,
   };
 
   if (person.role === Role.ADMIN) {
-    console.log("is admin");
+    console.log('is admin');
   }
 
   if (person.role === 0) {
-    console.log("is admin");
+    console.log('is admin');
   }
   ```
 
@@ -233,7 +233,7 @@ const product = {
 function combine(input1: number | string, input2: number | string) {
   // const result = input1 + input2; // '+' 연산자를 'string | number' 및 'string | number' 형식에 적용할 수 없습니다.ts(2365)
   let result: number | string;
-  if (typeof input1 === "number" && typeof input2 === "number") {
+  if (typeof input1 === 'number' && typeof input2 === 'number') {
     result = input1 + input2;
   } else {
     result = input1.toString() + input2.toString();
@@ -252,14 +252,14 @@ console.log(combinedAges);
   - literal을 정의하면, 특정 값만 받을 수 있으며, 대소문자를 구분한다.
 
     ```ts
-    function literal(resultConversion: "STRING" | "text") {
+    function literal(resultConversion: 'STRING' | 'text') {
       return resultConversion;
     }
 
     // const literalResult = literal("TEXT");
     // console.log(literalResult); // Argument of type '"TEXT"' is not assignable to parameter of type '"STRING"'.
 
-    const literalResult = literal("STRING");
+    const literalResult = literal('STRING');
     console.log(literalResult); // STRING
     ```
 
@@ -269,12 +269,12 @@ console.log(combinedAges);
 
   ```ts
   type Combinable = number | string;
-  type STRING = "STRING" | "string";
+  type STRING = 'STRING' | 'string';
 
   function combine(input1: Combinable, input2: Combinable, input3: STRING) {
     // const result = input1 + input2; // '+' 연산자를 'string | number' 및 'string | number' 형식에 적용할 수 없습니다.ts(2365)
     let result: number | string;
-    if (typeof input1 === "number" && typeof input2 === "number") {
+    if (typeof input1 === 'number' && typeof input2 === 'number') {
       result = input1 + input2;
     } else {
       result = input1.toString() + input2.toString();
@@ -282,7 +282,7 @@ console.log(combinedAges);
     return result;
   }
 
-  const combinedAges = combine(30, 26, "STRING");
+  const combinedAges = combine(30, 26, 'STRING');
   console.log(combinedAges);
   ```
 
@@ -305,7 +305,7 @@ console.log(combinedAges);
     type User = { name: string; age: number };
 
     function greet(user: User) {
-      console.log("Hi, I am " + user.name);
+      console.log('Hi, I am ' + user.name);
     }
 
     function isOlder(user: User, checkAge: number) {
@@ -321,7 +321,7 @@ function add(a: number, b: number): number {
 }
 
 function printResult(num: number): void {
-  console.log("Result: " + num);
+  console.log('Result: ' + num);
 }
 
 printResult(add(5, 12));
@@ -340,3 +340,28 @@ printResult(add(5, 12));
   - undefined는 타입스크립트의 타입이다.
     - 하지만 함수 함수가 아무것도 반환하지 않을 때 void는 쓸 수 있지만, undefined는 쓸 수 없다.
     - 타입스크립트에서 반환 구문은 있지만, 아무 값도 반환하지 않을 때 사용한다.
+
+## 타입 기능을 하는 함수
+
+- 함수를 변수에 담을 때, 변수의 타입은 any로 추론되므로, 함수가 아닌 값을 할당할 수 있다.
+
+  ```js
+  let combineValues;
+  combineValues의 타입이 any로 추론되었기에 5가 할당된다.
+  combineValues = 5;
+
+  console.log(combineValues); // 5
+  ```
+
+- 첫 번째 단계는 여기 타입을 Function이라고 명시하는 것이다.
+
+  - 하지만 Function을 명시하는 경우, 다른 함수 값도 할당할 수 있는 문제가 있다.
+    이 때 Function 타입을 화살표 표기법으로 만들면 이를 해결할 수 있다.
+
+    ```ts
+    let combineValues: (a: number, b: number) => number;
+    combineValues = add;
+    console.log(combineValues(8, 8)); // 16
+    ```
+
+  - 화살표 함수의 오른쪽은 반환 값을 의미한다.
