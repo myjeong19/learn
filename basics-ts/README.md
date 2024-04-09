@@ -365,3 +365,20 @@ printResult(add(5, 12));
     ```
 
   - 화살표 함수의 오른쪽은 반환 값을 의미한다.
+
+## 함수 타입 및 콜백
+
+- 콜백과 함수 타입은 거의 같은 방식으로 동작한다.
+
+- 콜백 함수에 타입을 사용하면, 함수 인자를 정확히 전달 할 수 있다.
+
+  ```ts
+  function addAndHandle(n1: number, n2: number, cb: (number: number) => void) {
+    const result = n1 + n2;
+    cb(result);
+  }
+
+  addAndHandle(10, 20, result => {
+    console.log(result);
+  }); // 30
+  ```
