@@ -215,3 +215,44 @@ function add(n1: Combinable, n2: Combinable) {
     username: 'Username is too short',
   };
   ```
+
+## 함수 오버로딩 (Function overloading)
+
+- 타입스크립트는 result가 숫자인지 문자열인지 모르기에,  
+  result에 toString과 같은 문자열 메소드를 사용할 수 없다.
+
+  ```ts
+  type Combinable = string | number;
+
+  function add(n1: Combinable, n2: Combinable) {
+    if (typeof n1 === 'string' || typeof n2 === 'string') {
+      return n1.toString() + n2.toString();
+    }
+    return n1 + n2;
+  }
+
+  const result = add('Max', 'Schwarz');
+  // result.toString  // Error
+  ```
+
+  - 이러한 문제를 형 변환을 통해 해결할 수 있지만, 이 때 함수 오버로딩을 사용해 해결할 수도 있다.  
+    함수 오버로딩을 사용하는 방법은, 대상 함수 바로 위에 대상 함수를 써주는 것이다.
+
+    ```ts
+    type Combinable = string | number;
+
+    function add(a: number, b: number): number;
+    function add(a: string, b: string): string;
+    function add(a: number, b: string): string;
+    function add(n1: Combinable, n2: Combinable) {
+      if (typeof n1 === 'string' || typeof n2 === 'string') {
+        return n1.toString() + n2.toString();
+      }
+      return n1 + n2;
+    }
+
+    const result = add('Max', 'Schwarz');
+    result.split(' '); // ['Max', 'Schwarz']
+    ```
+
+- 즉, 함수 오버로딩은 타입스크립트가 스스로 반환값 타입을 식별할 수 없을 때 사용할 수 있다.
