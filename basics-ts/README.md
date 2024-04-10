@@ -382,3 +382,31 @@ printResult(add(5, 12));
     console.log(result);
   }); // 30
   ```
+
+## unknown 타입
+
+- 인풋과 강티 사용자가 무엇을 입력할지 모를 때, unknown 타입을 준다.
+
+- any와 비슷하지만 다르다.
+
+  ```ts
+  let userInput: unknown;
+  let userName: string;
+
+  userInput = 5;
+  userInput = 'Max';
+
+  // userName = userInput; // Error: Type 'unknown' is not assignable to type 'string'.
+  ```
+
+  - userInput이 unknown인 경우, 오류가 발생하지만 any로 바꾸면 오류가 발생하지 않는다.
+
+    - 타입스크립트에서 any는 가장 유연한 타입이며, 타입 확인 자체를 하지 않는다. 하지만 unknown은 조금 더 제한적이다.  
+      unknown 타입의 값을 타입이 정해진 변수에 할당하기 위해서는 아래와 같이 별도의 작업이 필요하다.
+      이 점이 any보다 unknown이 나은 점이라고 볼 수 있다.
+
+      ```ts
+      if (typeof userInput === 'string') {
+        userName = userInput;
+      }
+      ```
