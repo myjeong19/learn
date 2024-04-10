@@ -114,3 +114,45 @@ function add(n1: Combinable, n2: Combinable) {
     }
   }
   ```
+
+## 구별된 유니언
+
+- 구별된 유니언은 타입 가드의 종류 중 하나로, 객체와 유니언 타입을 대상으로 타입 가드를 구현할 때 도움이 된다.
+
+  - 구별된 유니언은 객체에 추가 공통 속성을 부여해 사용한다.
+
+  ```ts
+  interface Bird {
+    type: 'bird';
+    flyingSpeed: number;
+  }
+
+  interface Horse {
+    type: 'horse';
+    runningSpeed: number;
+  }
+
+  type Animal = Bird | Horse;
+
+  function moveAnimal(animal: Animal) {
+    let speed;
+
+    switch (animal.type) {
+      case 'bird':
+        speed = animal.flyingSpeed;
+        break;
+      case 'horse':
+        speed = animal.runningSpeed;
+        break;
+    }
+
+    console.log('Moving at speed: ' + speed);
+  }
+
+  moveAnimal({ type: 'bird', flyingSpeed: 10 });
+  moveAnimal({ type: 'horse', runningSpeed: 20 });
+  ```
+
+```
+
+```
