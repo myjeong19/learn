@@ -153,6 +153,45 @@ function add(n1: Combinable, n2: Combinable) {
   moveAnimal({ type: 'horse', runningSpeed: 20 });
   ```
 
-```
+## 형변환 (type casting)
 
-```
+- 타입스크립트가 타입을 판단하지 못할 때 형 변환은 어떤 값이 어떤 타입인지를 타입스크립트에게 알려준다.
+
+  - DOM에 접근할 때 유용하다.
+  - 형 변환은 값의 타입을 명시적으로 지정하는 것이다.
+
+- 일종의 타입인 HTML 요소는 일반적인 것이고, 특정 HTML 요소에 특화된 속성을 지원하지 않는다.
+
+  ```ts
+  const userInput = document.getElementById('user-input')!;
+
+  userInput.value = 'Hi there!';
+  // ERROR: 'HTMLElememnt' 형식에 'value' 속성이 없습니다.
+  ```
+
+  - 이 때, 형변환을 처리할 수 있는 구문은 두 가지 이며, 하는 일은 동일하다.
+
+    1. 형 변환 대상 앞에 추가하기
+
+       ```ts
+       const userInput = <HTMLInputElement>document.getElementById('user-input')!;
+       userInput.value = 'Hi there!';
+       ```
+
+    2. JSX를 위한 형 변환
+
+       ```ts
+       const userInput = document.getElementById('user-input')! as HTMLInputElement;
+       ```
+
+- !는 타입스크립트에게 절대 null이 아닐 것임을 알려준다.
+
+  - null이 반환 될지 확신할 수 없으면 if문을 사용하면 된다.
+
+    ```ts
+    const userInputElement = document.getElementById('user-input');
+
+    if (userInputElement) {
+      (userInputElement as HTMLInputElement).value = 'Hi there!';
+    }
+    ```
