@@ -195,3 +195,23 @@ function add(n1: Combinable, n2: Combinable) {
       (userInputElement as HTMLInputElement).value = 'Hi there!';
     }
     ```
+
+## 인덱스(index) 타입
+
+- 인덱스 타입은 객체를 생성할 때 도움이 된다.
+
+  - 인덱스 타입은 에러 컨테이너를 만들 때 유용하게 사용되며,  
+    문자열로 된 속성 이름과 문자열, 숫자 심볼 값으로 이루어진 객체를 만들 수 있다.
+  - 인덱스 타입은 속성 이름을 모르고, 개수도 모를 때 유연하게 사용 가능하다.
+    - 인덱스 타입이 string인 경우, 객체에 숫자형을 추가할 수 없다.
+
+  ```ts
+  interface ErrorContainer {
+    [prop: string]: string;
+  }
+
+  const errorBag: ErrorContainer = {
+    email: 'Not a valid email',
+    username: 'Username is too short',
+  };
+  ```
