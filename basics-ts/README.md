@@ -403,10 +403,37 @@ printResult(add(5, 12));
 
     - 타입스크립트에서 any는 가장 유연한 타입이며, 타입 확인 자체를 하지 않는다. 하지만 unknown은 조금 더 제한적이다.  
       unknown 타입의 값을 타입이 정해진 변수에 할당하기 위해서는 아래와 같이 별도의 작업이 필요하다.
-      이 점이 any보다 unknown이 나은 점이라고 볼 수 있다.
+      이 점이 모든 것을 허용하는 any보다 unknown이 나은 점이라고 볼 수 있다.
 
       ```ts
       if (typeof userInput === 'string') {
         userName = userInput;
       }
       ```
+
+## never 타입
+
+- never 타입은 void 타입과 다르게 함수가 반환할 수 있다.
+
+  ```ts
+  function generateError(message: string, code: number): never {
+    throw { message: message, errorCode: code };
+  }
+
+  generateError('An error occurred!', 500);
+  ```
+
+  - 이 함수는 아무것도 반환하지 않아 void를 명시할 수 있지만, 사실 아무것도 반환하는 것이 아닌 never를 반환한다.  
+    여기서 never란, 절대 반환 값을 생성하지 않는 것을 의미한다.
+
+    ```ts
+    const result = generateError('An error occurred!', 500);
+    console.log(result);
+    ```
+
+    - 이 코드를 실행하면 undefined를 반환하지 않는다. 왜냐하면 오류가 발생할 때, 스크립트를 멈추기 때문이다.  
+      try-catch 문을 사용해 구문을 진행할 수 있지만, generateError 함수는 본질적으로 절대 값을 생성하지 않기에,
+      try-catch 문을 사용하더라도 이 부분은 항상 멈추기에 함수 반환 값이 void가 아닌 never이다.
+    - 하지만 재미있는 점은 never는 새로운 타입이기에 never를 할당하지 않고 마우스를 올려 확인해보면 추론한 타입은 void가 나온다.
+
+- 함수가 절대 값을 반환하지 않을 때 never 타입을 사용할 수 있다.
