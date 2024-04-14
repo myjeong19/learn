@@ -1,8 +1,8 @@
 # 리액트 패턴
 
-## 합성 컴포넌트 패턴 (Compound Componets React Pattern)
+## 합성 컴포넌트 패턴 (Compound Components React Pattern)
 
-- 합성 컴포넌트(Compound Componets)란 스스로 동작하지 않는 컴포넌트를 의미한다.
+- 합성 컴포넌트(Compound Components)란 스스로 동작하지 않는 컴포넌트를 의미한다.
 
   - HTML 내장 된 두 요소 `<select>`와, `<option>`을 의미하며, 합성 요소 또는 함성 컴포넌트라고 한다.
   - 리액트에서 이런 종류의 컴포넌트를 직접 만들 수 있으며, 특정 상황에서 필요하다.
@@ -186,5 +186,43 @@ export default function AccordionItem({ id, className, children }) {
 ## Render Props 패턴
 
 - Render Props 패턴은 컴포넌트 함수를 값으로 전달하여, 재사용과 검색 가능한 목록 컴포넌트를 만드는 패턴이다.
+
   - 함수를 값으로 어느 prop이든 상관 없지만, 주로 children prop에 전달한다.
     - 함수를 정의하는 컴포넌트가 렌더 가능한 것을 반환해야하며, 이 함수가 child props의 값으로 전달 된다.
+
+- SearchableList.jsx
+
+  ```jsx
+  import { useState } from 'react';
+
+  export default function SearchableList({ items, children }) {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const searchResults = items.filter(item => JSON.stringify(item).toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()));
+
+    function handleChange(event) {
+      setSearchTerm(event.target.value);
+    }
+
+    return (
+      <div className="searchable-list">
+        <input type="search" placeholder="Search" onChange={handleChange} />
+
+        <ul>
+          {searchResults.map((item, index) => (
+            <li key={index}>{children(item)}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+  ```
+
+- app.jsx
+
+  ```jsx
+  <section>
+    <SearchableList items={PLACES}>{item => <Place item={item} />}</SearchableList>
+    <SearchableList items={['item 1', 'item 2']}>{item => item}</SearchableList>
+  </section>
+  ```
