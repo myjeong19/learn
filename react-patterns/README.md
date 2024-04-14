@@ -226,3 +226,22 @@ export default function AccordionItem({ id, className, children }) {
     <SearchableList items={['item 1', 'item 2']}>{item => item}</SearchableList>
   </section>
   ```
+
+## 디바운싱 (Debouncing)
+
+- 디바운싱은 키 입력이 멈추는 동안에만 상태를 갱신하여 효율적으로 검색을 처리하는 기술입니다.
+
+```jsx
+function handleChange(event) {
+  // 진행중인 타이머가 있을 시, 타이머를 취소하고 새로운 타이머를 설정한다.
+  if (lastChange.current) {
+    clearTimeout(lastChange.current);
+  }
+
+  lastChange.current = setTimeout(() => {
+    // 저장된 타이머 식별자 초기화
+    lastChange.current = null;
+    setSearchTerm(event.target.value);
+  }, 500);
+}
+```
