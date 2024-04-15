@@ -125,3 +125,39 @@
       keyExtractor={(item, index) => item.id}
     />
     ```
+
+## Pressable
+
+- `Pressable` 컴포넌트는 요소를 터치할 수 있게 해준다.
+
+  ```jsx
+  <Pressable onPress={onDeleteGoal}>
+    <View style={styles.goalItem}>
+      <Text style={styles.goalItemText}>{text}</Text>
+    </View>
+  </Pressable>
+  ```
+
+- `android_ripple` 속성을 사용하면, 안드로이드에서 클릭 애니메이션을 줄 수 있다.
+- IOS에서 같은 효과를 주기 위해선, style에 함수를 사용해야한다.  
+  이 함수는 Pressable에 의해 터치 상태가 변경될 때마다, 자동으로 호출된다.
+
+  ```js
+  <Pressable
+    android_ripple={{ color: '#222' }}
+    style={({ pressed }) => pressed && styles.pressedItem}
+    onPress={onDeleteGoal}
+  >
+    <Text style={styles.goalItemText}>{text}</Text>
+  </Pressable>
+  ```
+
+## Modal
+
+- `Modal` 컴포넌트를 사용하면, 간다하게 모달을 만들 수 있다.
+
+  - `visible` 속성은 불리언 값을 받으며 참 유무에 따라, 모달을 표시한다.
+  - `animationType` 속성은 모달을 화면에 띄울 때 애니메이션을 설정할 수 있다.
+
+- `Button`은 단지, Pressable 혹은, Touchable로 이루어진 컴포넌트이기에,
+  `Text`, `View`를 포함한 Pressable 컴포넌트를 구축해야한다.
