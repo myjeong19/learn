@@ -56,3 +56,72 @@
 - `onPress`를 사용하면 사용자의 클릭을 감지할 수 있다.
 
 - 상태 관리는 React와 동일하게 동작한다.
+
+## Scroll
+
+- 스크롤을 하기 위해선 `ScrollView`로 명시적으로 지시해야한다.
+
+- 스크롤 가능한 속성은 `ScrollView`에서 제공하지만, 스크롤 가능한 영역은 부모 요소가 결정한다.
+
+  - 이럴 때는 일반적인 `View`를 추가해서, 사용 가능한 높이를 제한한다.
+
+  ```jsx
+  <View style={styles.goalsContainer}>
+    <ScrollView>
+      {couresGoals.map((goal, index) => (
+        <View style={styles.goalItem} key={index + goal}>
+          <Text style={styles.goalItemText}>{goal}</Text>
+        </View>
+      ))}
+    </ScrollView>
+  </View>
+  ```
+
+- 스크롤이 가능하고 튀어오르는 효과는 `alwaysBounceVertical`로 제어할 수 있다.
+
+  - 사용 가능 공간을 채울 만한 콘텐츠가 없다면, 튀어오르는 효과는 발생하지 않는다.
+
+- `ScrollView`는 전체 UI가 렌더링 될 때 마다, 내부 요소를 전부 렌더링한다.
+
+  - `ScrollView`는 분량이 제한된 콘텐츠에는 적합하지만, 아주 길어질 수 있는 동적 목록에는 적합하지 않다.  
+    이때 `FlatList`를 사용할 수 있다.
+  - `FlatList`는 스크롤 가능한 목록에 적용할 수 있으며, 보이는 항목만 렌더링하고 보이지 않는 항목은 사용자 스크롤에 반응해 로딩 및 렌더링한다.
+
+    - `alwaysBounceVertical`는 FlatList에서도 지원하는 속성이다.
+    - `data` 속성은 필수 속성으로 목록에서 출력할 데이터를 지정하는 속성이다.
+    - `renderItem`은 개별 항목을 렌더링 하는 방법을 FlatList에 지시하는 함수를 값으로 갖는 속성이다.
+
+      - 함수는 자동으로 개별 항목을 매개변수로 받는다.
+      - 매개변수는 index 속성에 접근 권한도 제공한다.
+        - 매개변수는 item 속성으로 값에 접근 가능하다.
+
+    - `FlatList`에 키를 추가하는 방법 중 하나는 추가할 값을 문자열에서 key속성을 포함한 객체로 바꾸는 것이다.
+      `FlatList`는 key 속성을 자동으로 찾아 할당한다.
+
+    ```jsx
+    const addGoalHandler = () => {
+      setCourseGoals(prevCouresGoals => [
+        ...prevCouresGoals,
+        { key: Math.random().toString(), text: enteredGoalText },
+      ]);
+      setEnteredGoalText('');
+    };
+    ```
+
+    - API에서 데이터를 가져와서 변형할 수 없는 경우, 입력 데이터에 key 속성을 설정한다.
+      - `keyExtractor` 속성은 함수를 값으로 취하며,
+
+    ```jsx
+    <FlatList
+      data={couresGoals}
+      renderItem={itemData => {
+        return (
+          <View style={styles.goalItem}>
+            <Text style={styles.goalItemText}>{itemData.item.text}</Text>
+          </View>
+        );
+      }}
+      alwaysBounceVertical={false}
+      keyExtractor={(item, index) => item.id}
+    />
+    ```
