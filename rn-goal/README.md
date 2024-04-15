@@ -161,3 +161,15 @@
 
 - `Button`은 단지, Pressable 혹은, Touchable로 이루어진 컴포넌트이기에,
   `Text`, `View`를 포함한 Pressable 컴포넌트를 구축해야한다.
+
+## Image
+
+- `Image` 컴포넌트를 사용하면 이미지를 추가 할 수 있다.
+
+  - src속성 대신 RN에서는 source 속성을 사용하며, `require()` 함수를 값으로 주어야한다.
+
+    ```jsx
+    <Image style={styles.image} source={require('../assets/images/goal.png')} />
+    ```
+
+## Expo의 StatusBar 컴포넌트를 사용하면, 상태 표시줄의 색상을 정의할 수 있다.
