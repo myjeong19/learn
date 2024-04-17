@@ -371,3 +371,92 @@ button.addEventListener('click', p.showMessage);
 ```
 
 ## 유효성 검증 데코레이터
+
+- 데코레이터를 사용하여 유효성 검증을 할 수 있다.
+
+```ts
+// 저장소
+interface ValidatorConfig {
+  [property: string]: {
+    [validatableProp: string]: string[]; // ['required', 'positive']
+  };
+}
+
+// 빈 객체 초기화
+const registeredValidators: ValidatorConfig = {};
+
+// target: 속성이 속한 객체의 프로토타입이 들어오거나, 정적 속성인 경우, 생성자 함수가 들어온다.
+// propName: 속성 명
+function Required(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    // 처리할 인스턴스의 프로토타입에는 constructor라는 키가 있으며, 이 키는 객체 생성에 사용된 함수를 가르킨다.
+    // 이 키의 값은 함수이기에, name 속성을 사용할 수 있다.
+    // name 속성은 자바스크립트의 모든 함수에 존재하며, 함수 이름을 가르킨다.
+    ...registeredValidators[target.constructor.name],
+
+    // 속성의 키를 동적으로 할당한다.
+    [propName]: [...(registeredValidators[target.constructor.name]?.[propName] ?? []), 'required'],
+    // 속성에 등록된 검사가 있어도, 이 과정에서 덮어쓰게 된다.
+  };
+}
+
+function PositiveNumber(target: any, propName: string) {
+  registeredValidators[target.constructor.name] = {
+    ...registeredValidators[target.constructor.name],
+    [propName]: [...(registeredValidators[target.constructor.name]?.[propName] ?? []), 'positive'],
+  };
+}
+
+// 함수로 들어온 객체에 등록된 검사기 목럭 부터, 가져와야한다.
+function validate(obj: any) {
+  const objValidatorConfig = registeredValidators[obj.constructor.name];
+  // 동작 방식 및 프로토타입 체인 덕분에, 객체 자체에서 constructor 속성이 없을 때, 프로토타입에서 가져올 수 있다.
+  if (!objValidatorConfig) {
+    return true;
+  }
+  let isValid = true;
+  for (const prop in objValidatorConfig) {
+    for (const validator of objValidatorConfig[prop]) {
+      switch (validator) {
+        case 'required':
+          isValid = isValid && !!obj[prop];
+          break;
+        case 'positive':
+          isValid = isValid && obj[prop] > 0;
+          break;
+      }
+    }
+  }
+}
+
+class Cours {
+  @Required
+  title: string;
+  @PositiveNumber
+  price: number;
+
+  constructor(title: string, price: number) {
+    this.title = title;
+    this.price = price;
+  }
+}
+
+const courseForm = document.querySelector('form')!;
+courseForm.addEventListener('submit', e => {
+  e.preventDefault();
+
+  const titleEl = document.getElementById('title') as HTMLInputElement;
+  const priceEl = document.getElementById('price') as HTMLInputElement;
+
+  const title = titleEl.value;
+  const price = +priceEl.value;
+
+  const createdCourse = new Cours(title, price);
+
+  if (!validate(createdCourse)) {
+    alert('Invalid input, please try again!');
+    return;
+  }
+  console.log(createdCourse);
+});
+```
