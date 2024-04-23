@@ -65,7 +65,7 @@
   },
   "exclude": [
     "node_modules",
-    "./src/original", // would be the default
-    "./src/namespace"
+    "original", // would be the default
+    "namespace"
   ]
 }
