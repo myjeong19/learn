@@ -51,3 +51,44 @@
 - 웹팩(webpack)을 사용하면 추가 확장자를 제거할 수 있다.
 
 - ES 모듈에는 export와 import 구문의 변형이 존재한다.
+
+  - 임포트 번들링 (import bundling)  
+    export한 것을 그룹화 할 수 있다.
+
+  ```ts
+    import * as Validation from '../util/validation.js';
+    ...
+
+        const titleValidatable: Validation.Validatable = {
+      value: enteredTitle,
+      required: true,
+    };
+
+    ...
+
+        if (
+      !Validation.validate(titleValidatable) ||
+      !Validation.validate(descriptionValidatable) ||
+      !Validation.validate(peopleValidatable)
+    ) {
+      alert('Invalid input, please try again');
+      return;
+    } else {
+      return [enteredTitle, enteredDescription, +enteredPeople];
+    }
+  }
+  ```
+
+- alias  
+  import 한 것의 이름만 재지정할 수 있다.
+
+  ```js
+  import { autobind as Autobind } from '../decorators/autobind.js';
+  ```
+
+- export default
+  파일 export의 기본 값을 명시할 수 있다.
+
+  ```js
+  export default abstract class Component<T extends HTMLElement, U extends HTMLElement> {...}
+  ```
