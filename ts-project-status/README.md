@@ -31,10 +31,23 @@
 
 - `///` 를 사용해, 다른 파일에 임포트 할 수 있다.
 
-- 자바스크립트에는 네임스페이스에 대응하는 동등한 값이 없어,  
-  tsconfig에서 "moduleResolution": "node" 설정을 해주어야한다.
+- compilerOptions의 속성 "module"을 amd로 설정해야한다.
 
 - 모든 것을 app.ts에 임포트하면 런타임 오류가 발생할 수 있어,  
   필요한 것을 파일 안에 임포트하고, 필요할 때마다 파일에 추가하는 것이 좋다
 
-## ES Module
+## ES 모듈(Module)
+
+- ES 모듈을 사용하면 파일 간의 종속성을 명확하게 지정할 수 있다.
+
+- compilerOptions의 속성 "module": "ES2015"로 변경하고 outFile을 주석처리해야한다.
+
+- HTML의 script 태그 속성 defer를 지우고, type 속성의 값으로 module을 할당해야한다.
+
+  ```html
+  <script type="module" src="dist/app.js"></script>
+  ```
+
+- 웹팩(webpack)을 사용하면 추가 확장자를 제거할 수 있다.
+
+- ES 모듈에는 export와 import 구문의 변형이 존재한다.
