@@ -92,3 +92,7 @@
   ```js
   export default abstract class Component<T extends HTMLElement, U extends HTMLElement> {...}
   ```
+
+## 모듈의 코드가 실행되는 방식
+
+export로 내보낸 코드는 파일이 다른 파일에 최초로 import 될 때 한 차례만 실행된다.
