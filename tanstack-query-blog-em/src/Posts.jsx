@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { fetchPosts, deletePost, updatePost } from "./api";
-import { PostDetail } from "./PostDetail";
+import { fetchPosts, deletePost, updatePost } from './utils/api';
+import { PostDetail } from './PostDetail';
+import { queryKeys } from './utils/queryKeys';
 const maxPostPage = 10;
 
 export function Posts() {
@@ -10,7 +11,7 @@ export function Posts() {
   const [selectedPost, setSelectedPost] = useState(null);
 
   const { data, isError, error, isLoading } = useQuery({
-    queryKey: ["posts"],
+    queryKey: [queryKeys.posts],
     queryFn: fetchPosts,
     staleTime: 2000, // 2 seconds
   });
@@ -29,12 +30,8 @@ export function Posts() {
   return (
     <>
       <ul>
-        {data.map((post) => (
-          <li
-            key={post.id}
-            className="post-title"
-            onClick={() => setSelectedPost(post)}
-          >
+        {data.map(post => (
+          <li key={post.id} className="post-title" onClick={() => setSelectedPost(post)}>
             {post.title}
           </li>
         ))}
