@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+// TanstackQuery 팀에서 만든 커스텀 훅
 
 import LoadingIndicator from '../UI/LoadingIndicator.jsx';
 import ErrorBlock from '../UI/ErrorBlock.jsx';
@@ -23,7 +24,7 @@ export default function NewEventsSection() {
     // *  isError 가 True 일 경우, 표시
     content = (
       <ErrorBlock
-        title='An error occurred'
+        title="An error occurred"
         message={error.info?.message || 'Failed to fetch events.'}
       />
     );
@@ -32,7 +33,7 @@ export default function NewEventsSection() {
 
   if (data) {
     content = (
-      <ul className='events-list'>
+      <ul className="events-list">
         {data.map(event => (
           <li key={event.id}>
             <EventItem event={event} />
@@ -43,7 +44,7 @@ export default function NewEventsSection() {
   }
 
   return (
-    <section className='content-section' id='new-events-section'>
+    <section className="content-section" id="new-events-section">
       <header>
         <h2>Recently added events</h2>
       </header>
