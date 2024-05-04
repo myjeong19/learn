@@ -158,3 +158,49 @@ export default function NewGoal({ onAdd }: NewGoalProps) {
      onAddGoal(enteredGoal, enteredSummary);
    }
    ```
+
+## Advanced Component Types = Dynamic Components, Polymorphic Components & More
+
+### Solution: Building Components with Discriminated Unions
+
+- 구별된 유니온 (Discriminated Union)
+
+  - 구별된 유니온을 사용하면, props를 선택적으로 사용할 수 있다.
+
+    ```tsx
+    import { ReactNode } from 'react';
+
+    type HintBoxProps = {
+      mode: 'hint';
+      children: ReactNode;
+    };
+
+    type WarningBoxProps = {
+      mode: 'hint' | 'warning';
+      severity: 'low' | 'medium' | 'high';
+      children: ReactNode;
+    };
+
+    type InfoBoxProps = HintBoxProps | WarningBoxProps;
+
+    export default function InfoBox(props: InfoBoxProps) {
+      const { mode, children } = props;
+
+      if (mode === 'hint') {
+        return (
+          <aside className="infobox infobox-hint">
+            <p>{children}</p>
+          </aside>
+        );
+      }
+
+      const { severity } = props;
+
+      return (
+        <aside className={`infobox infobox-warning warning--${severity}`}>
+          <h2>Warning</h2>
+          <p>{children}</p>
+        </aside>
+      );
+    }
+    ```
