@@ -13,7 +13,7 @@ export default function Header({ children, image }: HeaderProps) {
   return (
     <header>
       <img {...image} />
-      <h1>{children}</h1>
+      {children}
     </header>
   );
 }

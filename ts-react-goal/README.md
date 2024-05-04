@@ -121,3 +121,24 @@ const [goals, setGoals] = useState<CourseGoal[]>([]);
 // or
 // const [goals, setGoals] = useState<Array<CourseGoal>>([])
 ```
+
+### Working with Generic Event Types
+
+1. useState
+
+2. FormData
+
+- event.currentTarget은 Form 요소와 데이터를 의미하지만, 타입스크립트는 이 접근방식을 이해하지 못해 오류가 발생하며,  
+  FormEvent가 Generi 타입인 이유는, onSubmit의 props에서 나오기 때문이다.
+  이때, `FormEvent<HTMLFormElement>` 이렇게 명시하면, 오류를 해결할 수 있다.
+
+```tsx
+export default function NewGoal({ onAdd }: NewGoalProps) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    new FormData(event.currentTarget);
+  }
+```
+
+3. Refs
