@@ -111,3 +111,13 @@ export default function Header({ children, image }: HeaderProps) {
   );
 }
 ```
+
+### Using useState() and TypeScript
+
+배열과 같은 복잡한 타입의 상태를 관리할 때는 제네릭 타입을 사용해야한다.
+
+```ts
+const [goals, setGoals] = useState<CourseGoal[]>([]);
+// or
+// const [goals, setGoals] = useState<Array<CourseGoal>>([])
+```
