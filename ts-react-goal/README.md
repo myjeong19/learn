@@ -142,3 +142,19 @@ export default function NewGoal({ onAdd }: NewGoalProps) {
 ```
 
 3. Refs
+
+   ```tsx
+   const refGoal = useRef<HTMLInputElement>(null);
+   const refSummary = useRef<HTMLInputElement>(null);
+
+   function handleSubmit(event: FormEvent<HTMLFormElement>) {
+     event.preventDefault();
+
+     const enteredGoal = refGoal.current!.value;
+     const enteredSummary = refSummary.current!.value;
+
+     event.currentTarget.reset();
+
+     onAddGoal(enteredGoal, enteredSummary);
+   }
+   ```
