@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { TypeCourseGoal } from './utils/TypeCourseGoal.ts';
+import { TypeCourseGoal } from './utils/types/TypeCourseGoal.ts';
 
 import Header from './components/Header.tsx';
 import CourseGoalList from './components/CourseGoalList.tsx';

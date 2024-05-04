@@ -1,6 +1,6 @@
 import CourseGoal from './CourseGoal';
 
-import { TypeCourseGoal } from '../utils/TypeCourseGoal';
+import { TypeCourseGoal } from '../utils/types/TypeCourseGoal';
 
 type CourseGoalListProps = {
   goals: TypeCourseGoal[];
