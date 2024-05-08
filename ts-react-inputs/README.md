@@ -134,3 +134,90 @@ export default function Container<C extends ElementType>({
   );
 }
 ```
+
+## Using forwardRef with TypeScript
+
+- 참조를 전달하는 방법
+
+```ts
+import { ComponentPropsWithRef, forwardRef } from 'react';
+
+type InputProps = {
+  label: string;
+  id: string;
+} & ComponentPropsWithRef<'input'>;
+
+const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { label, id, ...props },
+  ref
+) {
+  return (
+    <p>
+      <label htmlFor={id}>{label}</label>
+      <input type="text" id={id} {...props} ref={ref} />
+    </p>
+  );
+});
+
+export default Input;
+```
+
+## Building Another Wrapper Component (Custom Form Component)
+
+## Sharing Logic with "unknown" & Type Casting
+
+```tsx
+import { type FormEvent, type ComponentPropsWithoutRef } from 'react';
+type FormProps = ComponentPropsWithoutRef<'form'> & {
+  onSave: (value: unknown) => void;
+};
+
+export default function Form({ onSave, children, ...otherProps }: FormProps) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    console.log('Form submitted');
+
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData);
+    onSave(data);
+  }
+
+  return (
+    <form {...otherProps} onSubmit={handleSubmit}>
+      {children}
+    </form>
+  );
+}
+```
+
+## Exposing Component APIs with useImperativeHandle (with TypeScript)
+
+```tsx
+import { useImperativeHandle, useRef, forwardRef } from 'react';
+
+import { type FormEvent, type ComponentPropsWithoutRef } from 'react';
+
+export type FormHandle = {
+  clear: () => void;
+};
+
+type FormProps = ComponentPropsWithoutRef<'form'> & {
+  onSave: (value: unknown) => void;
+};
+
+const Form = forwardRef<FormHandle, FormProps>(function Form(
+  { onSave, children, ...otherProps }: FormProps,
+  ref
+) {
+  const form = useRef<HTMLFormElement>(null);
+
+  useImperativeHandle(ref, () => {
+    return {
+      clear() {
+        console.log('CLEARING');
+        form.current?.reset();
+      },
+    };
+  });
+
+```
