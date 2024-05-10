@@ -18,7 +18,7 @@ function reset() {
 
 elButtonReset.addEventListener('click', reset);
 
-function operatorHandler(operator) {
+function callOperator(operator) {
   const currentValue = elCounterValue.textContent;
   const currentValueAsNumber = +currentValue;
 
@@ -36,8 +36,8 @@ function limitInformation(element) {
   element.disabled = true;
 }
 
-function actionHanlder(operator, elementButton) {
-  const newValue = operatorHandler(operator);
+function operatorHanlder(operator, elementButton) {
+  const newValue = callOperator(operator);
 
   if (newValue < 0 || newValue > 5) {
     limitInformation(elementButton);
@@ -48,5 +48,5 @@ function actionHanlder(operator, elementButton) {
   elementButton.blur();
 }
 
-elButtonIncrease.addEventListener('click', () => actionHanlder('increase', elButtonIncrease));
-elButtonDecrease.addEventListener('click', () => actionHanlder('decrease', elButtonDecrease));
+elButtonIncrease.addEventListener('click', () => operatorHanlder('increase', elButtonIncrease));
+elButtonDecrease.addEventListener('click', () => operatorHanlder('decrease', elButtonDecrease));
