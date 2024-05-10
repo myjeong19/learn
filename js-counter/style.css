@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  all: unset;
+  /* RESET BUTTON STYLES */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  background-image: radial-gradient(ellipse, #0476f9, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter {
+  background-color: #88bfff;
+  width: 476px;
+  height: 615px;
+  border-radius: 12px;
+  box-shadow: 6px 5px 5px 0px rgba(0, 0, 0, 0.49);
+  -webkit-box-shadow: 6px 5px 5px 0px rgba(0, 0, 0, 0.49);
+  -moz-box-shadow: 6px 5px 5px 0px rgba(0, 0, 0, 0.49);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s;
+}
+
+.counter--limit {
+  background-color: #288af9;
+}
+
+.counter__title {
+  opacity: 0.6;
+  text-transform: uppercase;
+  /* TEXT UPPERCASE */
+  letter-spacing: 1px;
+  width: 200px;
+  text-align: center;
+  line-height: 0.9;
+  font-weight: 500;
+  font-size: 32px;
+  margin-top: 60px;
+}
+
+.counter__value {
+  color: #1d2507;
+  font-size: 200px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.counter__reset-button {
+  cursor: pointer;
+}
+
+.counter__reset-icon {
+  opacity: 0.3;
+  font-size: 35px;
+  transition: all 0.4s;
+}
+
+.counter__reset-icon:hover {
+  opacity: 0.5;
+}
+
+.counter__buttons {
+  background-color: #090725;
+  height: 116px;
+  margin-top: auto;
+  /* margin 100% */
+  width: 100%;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+}
+
+.counter__button {
+  flex: 1;
+  /* 공간의 비율 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.counter__button:hover {
+  background-color: #fcfcfc3f;
+  transition: all 0.4s;
+}
+
+.counter__button--decrease {
+}
+
+.counter__button--increase {
+  border-left: 1px solid rgb(28, 28, 28);
+}
+
+.counter__icon {
+  color: #88bfff;
+  opacity: 0.9;
+  font-size: 40px;
+}
+
+.counter__icon--minus {
+}
+
+.counter__icon--plus {
+}
+
+@media (max-wdth: 680px) or (max-height: 730px) {
+  .counter {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .counter__title {
+    margin-top: 100px;
+  }
+
+  .counter__buttons {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
