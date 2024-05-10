@@ -222,3 +222,25 @@ export function Posts() {
 2. 데이터가 stale이고, 캐시에 존재하며, refetch 트리거가 발생하면, 서버에서 새 데이터를 가져올 때 까지 캐시된 데이터를 표시한다.
 
 3. 데이터가 캐시에 없고, gcTime이 지나 삭제된 경우, 새로 가져오는 동안 표시할 데이터가 없다.
+
+## Building Better Wrapper Components with ComponentPropsWithoutRef
+
+- `ComponentPropsWithoutRef<'input'>;`는 표준 내장 입력 요소 중 하나이며, input의 속성을 지원해준다.
+
+```tsx
+import { ComponentPropsWithoutRef } from 'react';
+
+type InputProps = {
+  label: string;
+  id: string;
+} & ComponentPropsWithoutRef<'input'>;
+
+export default function Input({ label, id, ...props }: InputProps) {
+  return (
+    <p>
+      <label htmlFor={id}>{label}</label>
+      <input type="text" id={id} {...props} />
+    </p>
+  );
+}
+```
