@@ -21,3 +21,5 @@
 // Question 4
 foo();
 function foo() {}
+
+// const, let으로 선언한 변수는 hoisting이 발생하지 않음
