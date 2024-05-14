@@ -1,14 +1,23 @@
 import SplitScreen from './components/split-screen.tsx';
 
-function LeftSideComponent() {
-  return <h2>I am left!</h2>;
+type SideComponentProps = {
+  title: string;
+};
+
+function LeftSideComponent({ title }: SideComponentProps) {
+  return <h2>I am {title}!</h2>;
 }
-function RightSideComponent() {
-  return <h2>I am right!</h2>;
+function RightSideComponent({ title }: SideComponentProps) {
+  return <h2>I am {title}!</h2>;
 }
 
 function App() {
-  return <SplitScreen Left={LeftSideComponent} Right={RightSideComponent} />;
+  return (
+    <SplitScreen leftWidth={1} rightWidth={5}>
+      <LeftSideComponent title="Left" />
+      <RightSideComponent title="Right" />
+    </SplitScreen>
+  );
 }
 
 export default App;
