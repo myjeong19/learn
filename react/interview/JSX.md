@@ -10,3 +10,8 @@
 - Is it a part of React?
 
   - React 없이, JSX를 작성할수도, JSX 없이 React코드를 작성할 수 있다.
+
+## Why can't we write class inside our jsx markup?
+
+- HTML이 아닌, JavaScript를 작성하고 있으며, JavaScript 내부에 있기에,  
+  class 대신 className을 사용해야 한다.
