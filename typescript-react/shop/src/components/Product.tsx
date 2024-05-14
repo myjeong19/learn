@@ -1,3 +1,6 @@
+import { addToCart } from '../store/cart-slice';
+import { useCartDispatch } from '../store/hooks';
+
 type ProductProps = {
   id: string;
   image: string;
@@ -6,13 +9,12 @@ type ProductProps = {
   description: string;
 };
 
-export default function Product({
-  image,
-  title,
-  price,
-  description,
-}: ProductProps) {
-  function handleAddToCart() {}
+export default function Product({ id, image, title, price, description }: ProductProps) {
+  const dispath = useCartDispatch();
+
+  function handleAddToCart() {
+    dispath(addToCart({ id, title, price }));
+  }
 
   return (
     <article className="product">
