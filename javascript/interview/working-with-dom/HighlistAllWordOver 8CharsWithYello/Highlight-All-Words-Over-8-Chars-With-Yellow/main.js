@@ -11,3 +11,7 @@ const link = document.createElement('a');
 link.href = 'https://foremipsum.com/';
 link.innerText = 'Text generated from Lorem Ipsum';
 document.body.appendChild(link);
+
+// Split each new sentence to a separate line in the paragraph text. A sentence can be assumed to be a string of text terminated with a period (.)
+
+paragraph.innerHTML = paragraph.innerHTML.split(/\.[^.|<]/).join('.</p><p>') + '</p>';
