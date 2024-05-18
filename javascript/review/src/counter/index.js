@@ -13,3 +13,5 @@ export default function handlerInput() {
   // show number of characters left
   elementTextCounter.textContent = charsLeft;
 }
+
+export { elementTextarea, handlerInput };
