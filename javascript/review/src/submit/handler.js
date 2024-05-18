@@ -1,9 +1,9 @@
 import { MAX_CHARS, insertElementFeedbackItem } from '../utils/index.js';
 import { elementTextarea, elementTextCounter } from '../counter/index.js';
-import { elementButtonSubmit } from './index.js';
+import { elementButtonSubmit, postFeedbackItem } from './index.js';
 import { getHashtag, getCompany, getBadgeLetter, showVisualIndicator } from './utils.js';
 
-export default function hanlderSubmit(event) {
+export default async function hanlderSubmit(event) {
   // prevent default browser acion (submitting form data to 'action'-address and loading new page)
   event.preventDefault();
 
@@ -28,7 +28,11 @@ export default function hanlderSubmit(event) {
   const upvoteCount = 0;
   const daysAgo = 0;
 
+  // render feedback item in list
   const newFeedback = { hashtag, company, badgeLetter, text, upvoteCount, daysAgo };
+
+  // send feedback item to server
+  await postFeedbackItem(newFeedback);
 
   // new feedback item HTML
   insertElementFeedbackItem(newFeedback);
