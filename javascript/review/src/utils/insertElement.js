@@ -1,4 +1,4 @@
-import { elementFeedbackList } from '../submit/element.js';
+import { elementFeedbackList } from '../feedback/index.js';
 import { createFeedbackTemplate } from './template.js';
 
 export function insertElementFeedbackItem(newFeedback) {
