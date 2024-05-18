@@ -1,13 +1,7 @@
-import { MAX_CHARS } from '../utils/constans/index.js';
+import { MAX_CHARS, insertElementFeedbackItem } from '../utils/index.js';
 import { elementTextarea, elementTextCounter } from '../counter/index.js';
 import { elementButtonSubmit } from './index.js';
-import {
-  getHashtag,
-  getCompany,
-  getBadgeLetter,
-  insertElementFeedbackItem,
-  showVisualIndicator,
-} from './utils.js';
+import { getHashtag, getCompany, getBadgeLetter, showVisualIndicator } from './utils.js';
 
 export default function hanlderSubmit(event) {
   // prevent default browser acion (submitting form data to 'action'-address and loading new page)
@@ -35,7 +29,7 @@ export default function hanlderSubmit(event) {
   const daysAgo = 0;
 
   // new feedback item HTML
-  insertElementFeedbackItem(text, company, badgeLetter, upvoteCount, daysAgo);
+  insertElementFeedbackItem(upvoteCount, badgeLetter, company, text, daysAgo);
 
   // clear textarea
   elementTextarea.value = '';

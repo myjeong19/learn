@@ -1,4 +1,4 @@
-import { MAX_CHARS } from '../utils/constans/index.js';
+import { MAX_CHARS } from '../utils/constnas.js';
 
 import { elementTextarea, elementTextCounter } from './index.js';
 
