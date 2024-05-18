@@ -22,14 +22,16 @@ export default function hanlderSubmit(event) {
   }
 
   // we have text, now extract other info from text
-  const hashtag = getHashtag(text);
-  const company = getCompany(hashtag);
-  const badgeLetter = getBadgeLetter(company);
-  const upvoteCount = 0;
-  const daysAgo = 0;
+  const newFeedback = {
+    hashtag: getHashtag(text),
+    company: getCompany(hashtag),
+    badgeLetter: getBadgeLetter(company),
+    upvoteCount: 0,
+    daysAgo: 0,
+  };
 
   // new feedback item HTML
-  insertElementFeedbackItem(upvoteCount, badgeLetter, company, text, daysAgo);
+  insertElementFeedbackItem(newFeedback);
 
   // clear textarea
   elementTextarea.value = '';

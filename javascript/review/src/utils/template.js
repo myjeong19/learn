@@ -2,7 +2,7 @@ function daysAgoInformation(daysAgo) {
   return daysAgo === 0 ? 'NEW' : `${daysAgo}d`;
 }
 
-export function createFeedbackTemplate(upvoteCount, badgeLetter, company, text, daysAgo) {
+export function createFeedbackTemplate({ upvoteCount, badgeLetter, company, text, daysAgo }) {
   const htmlFeedbackItem = `
       <li class="feedback">
         <button class="upvote">
