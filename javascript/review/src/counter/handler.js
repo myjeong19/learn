@@ -1,4 +1,4 @@
-import { elementTextarea, elementTextCounter } from './element.js';
+import { elementTextarea, elementTextCounter } from './index.js';
 
 export default function handlerInput() {
   // determine maximum number of characters
