@@ -1,11 +1,12 @@
+import { MAX_CHARS } from '../utils/constans/index.js';
 import { elementTextarea, elementTextCounter } from '../counter/index.js';
-import { elementForm, elementButtonSubmit } from './index.js';
+import { elementButtonSubmit } from './index.js';
 import {
-  removeDelayClass,
   getHashtag,
   getCompany,
   getBadgeLetter,
   insertElementFeedbackItem,
+  showVisualIndicator,
 } from './utils.js';
 
 export default function hanlderSubmit(event) {
@@ -17,11 +18,9 @@ export default function hanlderSubmit(event) {
 
   // validate text (e.g. check if #hashtag is present and text is long enough)
   if (text.includes('#') && text.length >= 5) {
-    elementForm.classList.add('form--valid');
-    removeDelayClass('form--valid');
+    showVisualIndicator('valid');
   } else {
-    elementForm.classList.add('form--invalid');
-    removeDelayClass('form--invalid');
+    showVisualIndicator('invalid');
     elementTextarea.focus();
 
     // stop this function execution
@@ -45,5 +44,5 @@ export default function hanlderSubmit(event) {
   elementButtonSubmit.blur();
 
   // reset counter
-  elementTextCounter.textContent = '150';
+  elementTextCounter.textContent = MAX_CHARS;
 }

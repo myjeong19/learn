@@ -4,6 +4,13 @@ function removeDelayClass(className, timer = 2000) {
   setTimeout(() => elementForm.classList.remove(className), timer);
 }
 
+function showVisualIndicator(textCheck) {
+  const className = textCheck === 'valid' ? 'form--valid' : 'form--invalid';
+
+  elementForm.classList.add(className);
+  removeDelayClass(className);
+}
+
 function getHashtag(text) {
   return text.split(' ').find(word => word.includes('#'));
 }
@@ -41,4 +48,4 @@ function insertElementFeedbackItem(text, company, badgeLetter, upvoteCount, days
   elementFeedbackList.insertAdjacentHTML('beforeend', htmlFeedbackItem);
 }
 
-export { removeDelayClass, getHashtag, getCompany, getBadgeLetter, insertElementFeedbackItem };
+export { getHashtag, getCompany, getBadgeLetter, insertElementFeedbackItem, showVisualIndicator };
