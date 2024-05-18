@@ -1,4 +1,4 @@
-import { elementTextarea } from './element.js';
+import { elementTextarea, elementTextCounter } from './element.js';
 import handlerInput from './handler.js';
 
-export { elementTextarea, handlerInput };
+export { elementTextarea, elementTextCounter, handlerInput };
