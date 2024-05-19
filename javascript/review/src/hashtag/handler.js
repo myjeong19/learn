@@ -3,7 +3,6 @@ import { elementFeedbackList } from '../feedback/index.js';
 function handlerClick(event) {
   // get the clicked element
   const elementClicked = event.target;
-  console.log(elementClicked);
 
   //   stop function if click happend in list, but outside buttons
   if (elementClicked.className === 'hashtags') {
