@@ -4,6 +4,7 @@ import WhatIsAKeyIndexMap from './WhatIsAKeyIndexMap';
 import WhatIsReactFragment from './WhatIsReactFragment';
 import WhatIsConditionalRenderingInReact from './WhatIsConditionalRenderingInReact';
 import HowToApplyStylesInReact from './HowToApplyStylesInReact';
+import HowParentChildCommunicationIsWorkingInReact from './HowParentChildCommunicationIsWorkingInReact';
 
 const App = () => {
   return (
@@ -19,6 +20,8 @@ const App = () => {
       <WhatIsConditionalRenderingInReact />
       <hr />
       <HowToApplyStylesInReact />
+      <hr />
+      <HowParentChildCommunicationIsWorkingInReact />
     </div>
   );
 };
