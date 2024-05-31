@@ -1,6 +1,7 @@
 import WhatAreFunctionalComponentsAndProps from './WhatAreFunctionalComponentsAndProps';
 import WhatAreClassComponentsPropsandState from './WhatAreClassComponentsPropsandState';
 import WhatIsAKeyIndexMap from './WhatIsAKeyIndexMap';
+import WhatIsReactFragment from './WhatIsReactFragment';
 
 const App = () => {
   return (
@@ -14,6 +15,10 @@ const App = () => {
       <hr />
 
       <WhatIsAKeyIndexMap />
+
+      <hr />
+
+      <WhatIsReactFragment />
     </div>
   );
 };
