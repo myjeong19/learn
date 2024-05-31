@@ -3,6 +3,7 @@ import WhatAreClassComponentsPropsandState from './WhatAreClassComponentsPropsan
 import WhatIsAKeyIndexMap from './WhatIsAKeyIndexMap';
 import WhatIsReactFragment from './WhatIsReactFragment';
 import WhatIsConditionalRenderingInReact from './WhatIsConditionalRenderingInReact';
+import HowToApplyStylesInReact from './HowToApplyStylesInReact';
 
 const App = () => {
   return (
@@ -16,6 +17,8 @@ const App = () => {
       <WhatIsReactFragment />
       <hr />
       <WhatIsConditionalRenderingInReact />
+      <hr />
+      <HowToApplyStylesInReact />
     </div>
   );
 };

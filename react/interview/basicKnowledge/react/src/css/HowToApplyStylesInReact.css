@@ -1,0 +1,11 @@
+.style {
+  width: 100vw;
+  height: 50px;
+  background-color: royalblue;
+}
+
+.bar {
+  width: 100vw;
+  height: 50px;
+  background-color: tomato;
+}
