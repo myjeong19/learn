@@ -31,8 +31,7 @@ const reducer = (state, { type, payload }) => {
 };
 
 export const WhatIsUseReducer = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  console.log('state', state);
+  const [{ isLoading, data }, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     dispatch({ type: 'getArticlesStart' });
@@ -47,7 +46,8 @@ export const WhatIsUseReducer = () => {
 
   return (
     <ul>
-      {state.data?.map(({ id, title }) => (
+      {isLoading && <li>Loading...</li>}
+      {data?.map(({ id, title }) => (
         <li key={id}>{title}</li>
       ))}
     </ul>
