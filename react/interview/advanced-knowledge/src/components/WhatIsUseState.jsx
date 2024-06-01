@@ -69,8 +69,9 @@ const WhatIsUseState = () => {
 
   return (
     <div>
-      <p>{count}</p>
-      <button onClick={onClick}>Hello</button>
+      <p>
+        {count} <button onClick={onClick}>Hello</button>
+      </p>
     </div>
   );
 };
