@@ -1,5 +1,6 @@
 import './App.css';
 import WhatIsUseEffect from './components/WhatIsUseEffect';
+import WhatIsUseMemo from './components/WhatIsUseMemo';
 import { WhatIsUseReducer } from './components/WhatIsUseReducer';
 import { WhatIsUseRef } from './components/WhatIsUseRef';
 import WhatIsUseState from './components/WhatIsUseState';
@@ -20,6 +21,8 @@ function App() {
       </ThemeContextProvider>
       <hr />
       <WhatIsUseRef />
+      <hr />
+      <WhatIsUseMemo />
     </>
   );
 }
