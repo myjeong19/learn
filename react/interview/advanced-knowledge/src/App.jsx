@@ -1,5 +1,6 @@
 import './App.css';
-import WhatIsUseCallback from './components/WhatIsUseCallback';
+import { WriteReactCustomHookUseFetch } from './components/WriteReactCustomHookUseFetch';
+// import WhatIsUseCallback from './components/WhatIsUseCallback';
 // import WhatIsUseEffect from './components/WhatIsUseEffect';
 // import WhatIsUseMemo from './components/WhatIsUseMemo';
 // import { WhatIsUseReducer } from './components/WhatIsUseReducer';
@@ -19,7 +20,8 @@ function App() {
       </ThemeContextProvider> */}
       {/* <WhatIsUseRef /> */}
       {/* <WhatIsUseMemo /> */}
-      <WhatIsUseCallback />
+      {/* <WhatIsUseCallback /> */}
+      <WriteReactCustomHookUseFetch />
     </>
   );
 }
