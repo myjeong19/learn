@@ -1,8 +1,8 @@
 // what do you know about useCallback?
-// useCallback은 함수 호출을 캐시하는 데 사용된다.
+// useCallback은 함수 호출을, useMemo는 데이터를 캐시하는데 사용된다.
 // useCallback 훅을 사용하지 않으면 자식 컴포넌트가 불필요하게 다시 렌더된다.
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, memo } from 'react';
 
 const initialUsers = [
   { id: 1, name: 'Robin' },
@@ -10,7 +10,8 @@ const initialUsers = [
   { id: 3, name: 'Morgan' },
 ];
 
-const List = ({ users, onRemove }) => {
+const List = memo(({ users, onRemove }) => {
+  console.log('list render');
   return (
     <ul>
       {users.map(({ id, name }) => (
@@ -21,7 +22,7 @@ const List = ({ users, onRemove }) => {
       ))}
     </ul>
   );
-};
+});
 
 const WhatIsUseCallback = () => {
   console.log('render');
