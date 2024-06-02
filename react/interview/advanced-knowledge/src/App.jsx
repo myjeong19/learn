@@ -1,5 +1,6 @@
 import './App.css';
-import { WriteReactCustomHookUseFetch } from './components/WriteReactCustomHookUseFetch';
+// import { WriteReactCustomHookUseFetch } from './components/WriteReactCustomHookUseFetch';
+import { WriteReactCustomHookUseLocalStorage } from './components/WriteReactCustomHookUseLocalStorage';
 // import WhatIsUseCallback from './components/WhatIsUseCallback';
 // import WhatIsUseEffect from './components/WhatIsUseEffect';
 // import WhatIsUseMemo from './components/WhatIsUseMemo';
@@ -21,7 +22,8 @@ function App() {
       {/* <WhatIsUseRef /> */}
       {/* <WhatIsUseMemo /> */}
       {/* <WhatIsUseCallback /> */}
-      <WriteReactCustomHookUseFetch />
+      {/* <WriteReactCustomHookUseFetch /> */}
+      <WriteReactCustomHookUseLocalStorage />
     </>
   );
 }
