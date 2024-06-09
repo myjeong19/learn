@@ -19,3 +19,12 @@
 
 - `npm uninstall`
   - 특정 패키지 제거
+
+## 종속성 (Dependencies)
+
+NPM을 사용하여, 패키지를 설치하면, 해당 패키지는 dependencies 객체에 나열된다.
+이때, `--save`를 사용하면 dependencies을 명시적으로 저장할 수 있다.
+
+# 개발 패키지
+
+- `--save-dev`를 추가하면 개발환경에만 패키지를 사용할 수 있다.
