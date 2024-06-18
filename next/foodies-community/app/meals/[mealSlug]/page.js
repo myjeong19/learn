@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import classes from './css/page.module.css';
-import { getMeal } from '@/lib/meal';
+import { getMeal } from '@/lib/meals';
 import { notFound } from 'next/navigation';
 export default function MealDetailsPage({ params }) {
   let meal = getMeal(params.mealSlug);
