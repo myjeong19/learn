@@ -13,7 +13,6 @@ export async function getMeals() {
 export function getMeal(slug) {
   return db.prepare('SELECT * FROM meals WHERE slug = ?').get(slug);
 }
-
 export async function saveMeal(meal) {
   meal.slug = slugify(meal.title, { lower: true });
   meal.instructions = xss(meal.instructions);
@@ -45,6 +44,6 @@ export async function saveMeal(meal) {
       @image,
       @slug
     )
-    `
+  `
   ).run(meal);
 }
