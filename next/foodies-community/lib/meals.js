@@ -45,6 +45,6 @@ export async function saveMeal(meal) {
       @image,
       @slug
     )
-  `
+    `
   ).run(meal);
 }
