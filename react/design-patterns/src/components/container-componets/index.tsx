@@ -4,14 +4,14 @@
 // import ResourceLoader from './parent/resource-loader';
 // import BookInfo from './child/book-info';
 // import DataSource from './parent/data-source';
-import axios from 'axios';
-import RenderSource from './parent/render-source';
+// import RenderSource from './parent/render-source';
+// import axios from 'axios';
 
 export default function ContainerComponent() {
-  async function getDataFromServer(url: string) {
-    const response = await axios.get(url);
-    return response.data;
-  }
+  // async function getDataFromServer(url: string) {
+  //   const response = await axios.get(url);
+  //   return response.data;
+  // }
 
   return (
     <>
@@ -39,10 +39,10 @@ export default function ContainerComponent() {
       >
         <UserInfo />
       </DataSource> */}
-      <RenderSource
+      {/* <RenderSource
         getData={() => getDataFromServer('http://localhost:9090/users/1')}
         render={resource => <UserInfo user={resource as User} />}
-      />
+      /> */}
     </>
   );
 }
