@@ -1,10 +1,12 @@
 import './App.css';
-import LayoutComponent from './components/layout-components';
+import ContainerComponent from './components/container-componets';
+// import LayoutComponent from './components/layout-components';
 
 function App() {
   return (
     <>
-      <LayoutComponent />
+      {/* <LayoutComponent /> */}
+      <ContainerComponent />
     </>
   );
 }
