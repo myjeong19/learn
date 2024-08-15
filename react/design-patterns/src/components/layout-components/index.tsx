@@ -11,12 +11,17 @@ import LargeAuthorListItem from './lists/authors/large-author-list-item';
 import SmallBookListItem from './lists/books/small-book-list-item';
 import LargeBookListItem from './lists/books/large-book-list-item';
 import NumberedList from './lists/list/numbered-list';
+import Modal from './modal/modal';
 
 export default function LayoutComponent() {
   return (
     // <ScreenSplitter Left={LeftComponent} Right={RightComponent} leftWidth={2} rightWidth={1} />
 
     <>
+      <Modal>
+        <NumberedList items={authors} sourceName={'author'} ItemComponent={LargeAuthorListItem} />
+      </Modal>
+
       <CleanScreenSplitter leftWidth={1} rightWidth={2}>
         <SideComponent title="LEFT" />
         <SideComponent title="RIGHT" />
