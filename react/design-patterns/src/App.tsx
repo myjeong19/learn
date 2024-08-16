@@ -1,11 +1,11 @@
 import './App.css';
 
-import ControlledUnControlled from './components/controlled-uncontrolled-components';
+import HOCs from './components/hocs';
 
 function App() {
   return (
     <>
-      <ControlledUnControlled />
+      <HOCs />
     </>
   );
 }
