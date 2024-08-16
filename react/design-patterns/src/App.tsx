@@ -1,12 +1,11 @@
 import './App.css';
-import ContainerComponent from './components/container-componets';
-// import LayoutComponent from './components/layout-components';
+
+import ControlledUnControlled from './components/controlled-uncontrolled-components';
 
 function App() {
   return (
     <>
-      {/* <LayoutComponent /> */}
-      <ContainerComponent />
+      <ControlledUnControlled />
     </>
   );
 }
