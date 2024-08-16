@@ -1,4 +1,4 @@
-import { UserInfoForm, ResourceForm } from './check-props/user-from';
+import { UserInfoForm, ResourceForm } from './include/user-from';
 
 export default function HOCs() {
   return (
