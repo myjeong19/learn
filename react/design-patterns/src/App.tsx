@@ -1,7 +1,13 @@
+import FunctionalProgramming from './components/functional-programming';
+
 import './App.css';
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <FunctionalProgramming />
+    </>
+  );
 }
 
 export default App;
