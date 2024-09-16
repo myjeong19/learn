@@ -1,10 +1,10 @@
 import './App.css';
-import CompoundComponents from './components/compound-components';
+import Observer from './components/observer';
 
 function App() {
   return (
     <>
-      <CompoundComponents />
+      <Observer></Observer>
     </>
   );
 }
