@@ -1,11 +1,10 @@
-import FunctionalProgramming from './components/functional-programming';
-
 import './App.css';
+import CompoundComponents from './components/compound-components';
 
 function App() {
   return (
     <>
-      <FunctionalProgramming />
+      <CompoundComponents />
     </>
   );
 }
