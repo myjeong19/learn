@@ -1,5 +1,5 @@
 <script>
-	import { State, Effect, Counter } from '$lib/components/state';
+	import { State, Effect, Counter } from '$lib/components/reactivity';
 </script>
 
 <main>
