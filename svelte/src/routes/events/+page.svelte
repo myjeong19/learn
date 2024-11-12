@@ -1,5 +1,6 @@
 <script>
-	import { DOMEvents } from '$lib/components/events';
+	import { DOMEvents, Capturing } from '$lib/components/events';
 </script>
 
 <DOMEvents />
+<Capturing />
