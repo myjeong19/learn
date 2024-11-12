@@ -1,5 +1,6 @@
 <script>
-	import { IfBlocks } from '$lib/components/logic';
+	import { ElseBlocks, IfBlocks } from '$lib/components/logic';
 </script>
 
 <IfBlocks />
+<ElseBlocks />
