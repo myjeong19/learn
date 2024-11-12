@@ -7,15 +7,7 @@
 	}
 </script>
 
-<div {onpointermove}>
+<div class="w-full p-5" {onpointermove}>
 	<p>The pointer is at {Math.round(m.x)} x {Math.round(m.y)}</p>
 	<hr />
 </div>
-
-<style>
-	div {
-		width: 100%;
-		height: 10px;
-		padding: 1rem;
-	}
-</style>
