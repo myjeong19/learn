@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Thing from './thing.svelte';
+	import Thing from './item.svelte';
 	import { fruits } from './utils';
 
 	let things = $state(fruits);

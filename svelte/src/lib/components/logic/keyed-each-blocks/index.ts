@@ -1,1 +1,1 @@
-export { default as KeyedEachBlocks } from './keyed-each-blocks.svelte';
+export { default as KeyedEachBlocks } from './list.svelte';
