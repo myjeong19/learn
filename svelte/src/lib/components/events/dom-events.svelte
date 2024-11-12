@@ -8,17 +8,14 @@
 </script>
 
 <div {onpointermove}>
-	The pointer is at {Math.round(m.x)} x {Math.round(m.y)}
+	<p>The pointer is at {Math.round(m.x)} x {Math.round(m.y)}</p>
+	<hr />
 </div>
-<hr />
 
 <style>
 	div {
-		position: fixed;
-		left: 0;
-		top: 0;
 		width: 100%;
-		height: 100%;
+		height: 10px;
 		padding: 1rem;
 	}
 </style>
