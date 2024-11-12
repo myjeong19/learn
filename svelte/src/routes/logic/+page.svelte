@@ -1,5 +1,6 @@
 <script>
 	import {
+		AwaitBlocks,
 		EachBlocks,
 		ElseBlocks,
 		ElseIfBlocks,
@@ -13,3 +14,4 @@
 <ElseIfBlocks />
 <EachBlocks />
 <KeyedEachBlocks />
+<AwaitBlocks />
