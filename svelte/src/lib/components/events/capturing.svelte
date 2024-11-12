@@ -3,3 +3,4 @@
 	<span> Capturing </span>
 	<input class=" border-4 border-green-100" onkeydowncapture={(e) => alert(`<input> ${e.key}`)} />
 </div>
+<hr />
