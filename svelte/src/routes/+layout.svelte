@@ -25,4 +25,11 @@
 	>
 </nav>
 
+<strong> Advanced Svelte </strong>
+<nav>
+	<a class="w-20 rounded bg-teal-600 px-3 py-1 text-white" href="/advanced-svelte/reactivity"
+		>reactivity</a
+	>
+</nav>
+
 {@render children()}
