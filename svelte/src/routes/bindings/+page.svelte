@@ -1,5 +1,11 @@
 <script>
-	import { CheckboxInputs, GroupInputs, NumericInputs, TextInputs } from '$lib/components/bindings';
+	import {
+		CheckboxInputs,
+		GroupInputs,
+		NumericInputs,
+		SelectMultiple,
+		TextInputs
+	} from '$lib/components/bindings';
 	import SelectBindings from '$lib/components/bindings/select-bindings.svelte';
 </script>
 
@@ -8,3 +14,4 @@
 <CheckboxInputs />
 <SelectBindings />
 <GroupInputs />
+<SelectMultiple />
