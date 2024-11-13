@@ -1,6 +1,7 @@
 <script>
-	import { NumericInputs, TextInputs } from '$lib/components/bindings';
+	import { CheckboxInputs, NumericInputs, TextInputs } from '$lib/components/bindings';
 </script>
 
 <TextInputs />
 <NumericInputs />
+<CheckboxInputs />
