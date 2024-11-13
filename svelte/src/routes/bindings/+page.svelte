@@ -1,5 +1,6 @@
 <script>
-	import { TextInputs } from '$lib/components/bindings';
+	import { NumericInputs, TextInputs } from '$lib/components/bindings';
 </script>
 
 <TextInputs />
+<NumericInputs />
