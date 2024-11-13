@@ -2,6 +2,7 @@
 	import {
 		AddingParameters,
 		CustomCSSTransitions,
+		CustomJSTransitions,
 		InAndOut,
 		TheTransitionDirective
 	} from '$lib/components/transitions';
@@ -11,3 +12,4 @@
 <AddingParameters />
 <InAndOut />
 <CustomCSSTransitions />
+<CustomJSTransitions />
