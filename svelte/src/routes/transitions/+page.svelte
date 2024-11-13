@@ -1,7 +1,13 @@
 <script>
-	import { AddingParameters, InAndOut, TheTransitionDirective } from '$lib/components/transitions';
+	import {
+		AddingParameters,
+		CustomCSSTransitions,
+		InAndOut,
+		TheTransitionDirective
+	} from '$lib/components/transitions';
 </script>
 
 <TheTransitionDirective />
 <AddingParameters />
 <InAndOut />
+<CustomCSSTransitions />
