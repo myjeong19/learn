@@ -11,7 +11,7 @@
 	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/events">events</a>
 	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/bindings">bindings</a>
 	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/class-and-styles">class-and-styles</a
-	>
+	><a class="w-20 rounded bg-black px-3 py-1 text-white" href="/actions">actions</a>
 </nav>
 
 {@render children()}
