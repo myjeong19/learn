@@ -12,9 +12,18 @@
 	}
 </script>
 
-<input bind:value={content} />
+<main class="h-20">
+	<input class="rounded border-2 border-teal-400" bind:value={content} />
 
-<button use:tooltip={() => ({ content })}> Hover me </button>
+	<button
+		use:tooltip={() => ({
+			placement: 'bottom',
+			content
+		})}
+	>
+		Hover me
+	</button>
+</main>
 
 <style>
 	:global {
