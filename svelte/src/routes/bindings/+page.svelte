@@ -4,6 +4,7 @@
 		GroupInputs,
 		NumericInputs,
 		SelectMultiple,
+		TextareaInputs,
 		TextInputs
 	} from '$lib/components/bindings';
 	import SelectBindings from '$lib/components/bindings/select-bindings.svelte';
@@ -15,3 +16,4 @@
 <SelectBindings />
 <GroupInputs />
 <SelectMultiple />
+<TextareaInputs />
