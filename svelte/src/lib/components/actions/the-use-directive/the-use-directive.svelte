@@ -9,7 +9,7 @@
 	let showMenu = $state(true);
 </script>
 
-<main class="relative">
+<main class="relative h-20">
 	<div class="container">
 		<Canvas color={selected} {size} />
 
