@@ -1,5 +1,6 @@
 <script>
-	import { TheUseDirective } from '$lib/components/actions';
+	import { AddingParameters, TheUseDirective } from '$lib/components/actions';
 </script>
 
 <TheUseDirective />
+<AddingParameters />
