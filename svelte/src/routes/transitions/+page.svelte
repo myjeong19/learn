@@ -5,6 +5,7 @@
 		CustomJSTransitions,
 		GlobalTransitions,
 		InAndOut,
+		KeyBlocks,
 		TheTransitionDirective,
 		TransitionsEvents
 	} from '$lib/components/transitions';
@@ -17,3 +18,4 @@
 <CustomJSTransitions />
 <TransitionsEvents />
 <GlobalTransitions />
+<KeyBlocks />

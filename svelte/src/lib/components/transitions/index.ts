@@ -5,3 +5,4 @@ export { default as CustomCSSTransitions } from './custom-css-transitions.svelte
 export { default as CustomJSTransitions } from './custom-js-transitions.svelte';
 export { default as TransitionsEvents } from './transition-events.svelte';
 export { default as GlobalTransitions } from './global-transitions.svelte';
+export * from './key-blocks';
