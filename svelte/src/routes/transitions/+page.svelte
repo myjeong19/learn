@@ -3,6 +3,7 @@
 		AddingParameters,
 		CustomCSSTransitions,
 		CustomJSTransitions,
+		GlobalTransitions,
 		InAndOut,
 		TheTransitionDirective,
 		TransitionsEvents
@@ -15,3 +16,4 @@
 <CustomCSSTransitions />
 <CustomJSTransitions />
 <TransitionsEvents />
+<GlobalTransitions />
