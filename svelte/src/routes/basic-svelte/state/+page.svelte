@@ -1,5 +1,5 @@
 <script>
-	import { State, Effect, Counter } from '$lib/components/reactivity';
+	import { State, Effect, Counter } from '$lib/components/basic-svelte/reactivity';
 </script>
 
 <main>

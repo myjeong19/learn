@@ -7,7 +7,7 @@
 		SelectMultiple,
 		TextareaInputs,
 		TextInputs
-	} from '$lib/components/bindings';
+	} from '$lib/components/basic-svelte/bindings';
 </script>
 
 <TextInputs />

@@ -6,7 +6,7 @@
 		ElseIfBlocks,
 		IfBlocks,
 		KeyedEachBlocks
-	} from '$lib/components/logic';
+	} from '$lib/components/basic-svelte/logic';
 </script>
 
 <IfBlocks />

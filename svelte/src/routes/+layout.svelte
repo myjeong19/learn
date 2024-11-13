@@ -4,16 +4,25 @@
 	let { children } = $props();
 </script>
 
-<nav>
-	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/state">state</a>
-	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/props">props</a>
-	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/logic">logic</a>
-	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/events">events</a>
-	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/bindings">bindings</a>
-	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/class-and-styles">class-and-styles</a
+<h1>
+	<a href="/" class="text-2xl font-bold"> Home</a>
+</h1>
+
+<strong>Basic Svelte</strong>
+
+<nav class="mb-3">
+	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/basic-svelte/state">state</a>
+	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/basic-svelte/props">props</a>
+	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/basic-svelte/logic">logic</a>
+	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/basic-svelte/events">events</a>
+	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/basic-svelte/bindings">bindings</a>
+	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/basic-svelte/class-and-styles"
+		>class-and-styles</a
 	>
-	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/actions">actions</a>
-	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/transitions">transitions</a>
+	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/basic-svelte/actions">actions</a>
+	<a class="w-20 rounded bg-black px-3 py-1 text-white" href="/basic-svelte/transitions"
+		>transitions</a
+	>
 </nav>
 
 {@render children()}

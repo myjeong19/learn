@@ -8,7 +8,7 @@
 		KeyBlocks,
 		TheTransitionDirective,
 		TransitionsEvents
-	} from '$lib/components/transitions';
+	} from '$lib/components/basic-svelte/transitions';
 </script>
 
 <TheTransitionDirective />
