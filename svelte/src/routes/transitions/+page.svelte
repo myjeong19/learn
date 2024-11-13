@@ -4,7 +4,8 @@
 		CustomCSSTransitions,
 		CustomJSTransitions,
 		InAndOut,
-		TheTransitionDirective
+		TheTransitionDirective,
+		TransitionsEvents
 	} from '$lib/components/transitions';
 </script>
 
@@ -13,3 +14,4 @@
 <InAndOut />
 <CustomCSSTransitions />
 <CustomJSTransitions />
+<TransitionsEvents />
