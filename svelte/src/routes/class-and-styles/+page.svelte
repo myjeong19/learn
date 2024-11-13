@@ -1,5 +1,6 @@
 <script>
-	import { TheClassDirective } from '$lib/components/classes-and-styles';
+	import { ComponentStyles, TheClassDirective } from '$lib/components/classes-and-styles';
 </script>
 
 <TheClassDirective />
+<ComponentStyles />
