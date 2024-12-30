@@ -20,7 +20,17 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Path Aliases */
+    "baseUrl": "./src",
+    "paths": {
+      "~app/*": ["app/*"],
+      "~assets/*": ["assets/*"],
+      "~entities/*": ["entities/*"],
+      "~features/*": ["features/*"],
+      "~shared/*": ["shared/*"]
+    }
   },
   "include": ["src"]
 }
